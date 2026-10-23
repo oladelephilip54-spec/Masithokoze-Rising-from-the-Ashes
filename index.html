@@ -11,12 +11,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root {
-      --bg: #050508;
-      --card: #0e0e13;
-      --border: rgba(255,255,255,0.06);
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --accent: #8b5cf6;
+      --bg: #F7F4EF;
+      --card: #FFFFFF;
+      --border: rgba(0,0,0,0.08);
+      --text: #0F172A;
+      --muted: #64748B;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,16 +33,6 @@
 
     .serif { font-family: 'Instrument Serif', Georgia, serif; }
 
-    .film-grain {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.035;
-      mix-blend-mode: overlay;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
-    }
-
     .container {
       max-width: 920px;
       margin: 0 auto;
@@ -54,100 +45,79 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 140px 0 130px;
+      padding: 140px 0 120px;
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -25%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1200px;
-      height: 900px;
-      background: radial-gradient(ellipse at center, rgba(139,92,246,0.16) 0%, transparent 65%);
-      pointer-events: none;
-      animation: pulseGlow 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-      100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
     }
 
     .hero-label {
       display: inline-block;
-      padding: 8px 20px;
-      background: rgba(139,92,246,0.1);
-      border: 1px solid rgba(139,92,246,0.25);
+      padding: 7px 18px;
+      background: rgba(37,99,235,0.08);
+      border: 1px solid rgba(37,99,235,0.18);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
-      color: #c4b5fd;
-      margin-bottom: 42px;
+      color: #1D4ED8;
+      margin-bottom: 36px;
       opacity: 0;
-      transform: translateY(30px) scale(0.95);
+      transform: translateY(24px);
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 36px;
-      opacity: 0;
-      transform: translateY(60px) rotateX(12deg);
-      transform-origin: center bottom;
-    }
-
-    .hero h1 span {
-      display: inline-block;
-      background: linear-gradient(105deg, #e9d5ff 0%, #c4b5fd 40%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 1.3rem;
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 56px;
+      font-size: clamp(2.9rem, 6.5vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 28px;
+      color: #0F172A;
       opacity: 0;
       transform: translateY(40px);
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
+    .hero h1 span {
+      color: #2563EB;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 48px;
       opacity: 0;
       transform: translateY(30px);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(24px);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 17px 38px;
+      padding: 15px 34px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 15px;
       text-decoration: none;
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       border: none;
       cursor: pointer;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      background: #2563EB;
       color: white;
-      box-shadow: 0 12px 40px rgba(139,92,246,0.3);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
     }
 
     .btn-primary:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 20px 55px rgba(139,92,246,0.45);
+      background: #1D4ED8;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(37,99,235,0.35);
     }
 
     .btn-ghost {
@@ -157,80 +127,71 @@
     }
 
     .btn-ghost:hover {
-      border-color: rgba(139,92,246,0.45);
-      background: rgba(139,92,246,0.08);
-      transform: translateY(-3px);
+      border-color: #2563EB;
+      background: rgba(37,99,235,0.05);
     }
 
     section {
-      padding: 130px 0;
+      padding: 110px 0;
     }
 
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #a78bfa;
-      margin-bottom: 22px;
+      color: #2563EB;
+      margin-bottom: 16px;
       opacity: 0;
     }
 
     .section-title {
-      font-size: clamp(2.2rem, 4.6vw, 3.1rem);
-      letter-spacing: -0.035em;
-      margin-bottom: 30px;
+      font-size: clamp(2rem, 4.2vw, 2.8rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
       opacity: 0;
     }
 
     /* Countries */
     .countries {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-      gap: 22px;
-      margin-top: 56px;
-      perspective: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 48px;
     }
 
     .country-card {
-      background: linear-gradient(165deg, #17171f 0%, #0e0e13 100%);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 36px 22px;
+      border-radius: 20px;
+      padding: 32px 20px;
       text-align: center;
-      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.4s ease;
       opacity: 0;
-      transform: translateY(60px) rotateX(8deg);
-      transform-style: preserve-3d;
-      box-shadow: 0 30px 70px -25px rgba(0,0,0,0.6);
+      transform: translateY(40px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
 
     .country-card:hover {
-      transform: translateY(-16px) rotateX(0deg) scale(1.03);
-      border-color: rgba(139,92,246,0.35);
-      box-shadow: 0 40px 90px -20px rgba(0,0,0,0.7);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: rgba(37,99,235,0.25);
     }
 
     .country-card.primary {
-      border-color: rgba(139,92,246,0.4);
-      background: linear-gradient(165deg, rgba(139,92,246,0.14) 0%, #0e0e13 100%);
+      border-color: rgba(37,99,235,0.3);
+      background: #EFF6FF;
     }
 
     .country-flag {
-      font-size: 38px;
-      margin-bottom: 16px;
-      display: inline-block;
-      transition: transform 0.5s ease;
-    }
-
-    .country-card:hover .country-flag {
-      transform: scale(1.15) rotateY(12deg);
+      font-size: 34px;
+      margin-bottom: 12px;
     }
 
     .country-name {
       font-weight: 600;
-      font-size: 17px;
-      margin-bottom: 6px;
+      font-size: 16px;
+      margin-bottom: 4px;
     }
 
     .country-tag {
@@ -238,33 +199,33 @@
       color: var(--muted);
     }
 
-    /* Strategy Sections */
+    /* Strategy blocks */
     .strategy-blocks {
-      margin-top: 50px;
+      margin-top: 48px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
     }
 
     .strategy-block {
-      background: linear-gradient(155deg, #16161e 0%, #0a0a0f 100%);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 28px;
-      padding: 36px 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 36px;
       opacity: 0;
-      transform: translateY(50px);
-      box-shadow: 0 30px 70px -25px rgba(0,0,0,0.55);
+      transform: translateY(40px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
 
     .strategy-block h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 14px;
-      color: #e9d5ff;
+      margin-bottom: 12px;
+      color: #1E40AF;
     }
 
     .strategy-block p {
-      color: #d4d4d8;
+      color: #475569;
       font-size: 1.05rem;
       line-height: 1.8;
     }
@@ -272,135 +233,125 @@
     /* Pricing */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-      margin-top: 60px;
-      perspective: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
     }
 
     .price-card {
-      background: linear-gradient(165deg, #17171f 0%, #0e0e13 100%);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 44px 36px;
+      border-radius: 28px;
+      padding: 40px 32px;
       position: relative;
-      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.45s ease;
       opacity: 0;
-      transform: translateY(70px) rotateX(8deg);
-      transform-style: preserve-3d;
-      box-shadow: 0 30px 70px -25px rgba(0,0,0,0.55);
+      transform: translateY(50px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
     }
 
     .price-card:hover {
-      transform: translateY(-14px) rotateX(0deg) scale(1.02);
-      box-shadow: 0 45px 100px -20px rgba(0,0,0,0.65);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.09);
     }
 
     .price-card.featured {
-      border-color: rgba(139,92,246,0.45);
-      background: linear-gradient(170deg, rgba(139,92,246,0.12) 0%, #0e0e13 100%);
-    }
-
-    .price-card.featured:hover {
-      box-shadow: 0 45px 110px -20px rgba(139,92,246,0.22);
+      border-color: #2563EB;
+      box-shadow: 0 15px 45px rgba(37,99,235,0.12);
     }
 
     .badge {
       position: absolute;
-      top: 22px;
-      right: 22px;
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      top: 20px;
+      right: 20px;
+      background: #2563EB;
       color: white;
       font-size: 11px;
       font-weight: 700;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 100px;
-      letter-spacing: 0.04em;
     }
 
     .plan-name {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .plan-desc {
-      font-size: 14.5px;
+      font-size: 14px;
       color: var(--muted);
       margin-bottom: 28px;
     }
 
     .price {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 700;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       margin-bottom: 6px;
-      background: linear-gradient(90deg, #ffffff, #c4b5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #0F172A;
     }
 
     .price-note {
       font-size: 14px;
       color: var(--muted);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .features {
       list-style: none;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .features li {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      padding: 9px 0;
+      padding: 8px 0;
       font-size: 15px;
-      color: #d4d4d8;
+      color: #334155;
     }
 
     .features li::before {
       content: "✓";
-      color: #a78bfa;
+      color: #2563EB;
       font-weight: 700;
       flex-shrink: 0;
     }
 
     .price-card .btn {
       width: 100%;
-      border-radius: 16px;
+      border-radius: 14px;
     }
 
     /* Final */
     .final {
       text-align: center;
-      padding: 150px 0 160px;
+      padding: 130px 0 150px;
     }
 
     .final h2 {
-      font-size: clamp(2.3rem, 5vw, 3.4rem);
-      margin-bottom: 26px;
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      margin-bottom: 22px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto 48px;
-      font-size: 1.18rem;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      font-size: 1.15rem;
       opacity: 0;
     }
 
     @media (max-width: 640px) {
-      .hero { padding-top: 110px; }
-      .strategy-block { padding: 30px 24px; }
-      .price { font-size: 2.7rem; }
+      .hero { padding-top: 100px; }
+      .strategy-block { padding: 28px 24px; }
+      .price { font-size: 2.6rem; }
     }
   </style>
 </head>
 <body>
-  <div class="film-grain"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -488,7 +439,7 @@
 
       <div class="pricing-grid">
 
-        <!-- 1. BOOK TRAILER (FIRST) -->
+        <!-- Book Trailer first -->
         <div class="price-card">
           <div class="plan-name">Book Trailer</div>
           <div class="plan-desc">Standalone short video for promotion</div>
@@ -503,7 +454,7 @@
           <a href="#contact" class="btn btn-ghost">Select Trailer</a>
         </div>
 
-        <!-- 2. TWO MONTHS -->
+        <!-- Two Months -->
         <div class="price-card">
           <div class="plan-name">Two Months</div>
           <div class="plan-desc">Focused launch support through and beyond 14 November</div>
@@ -522,7 +473,7 @@
           <a href="#contact" class="btn btn-ghost">Choose Two Months</a>
         </div>
 
-        <!-- 3. THREE MONTHS -->
+        <!-- Three Months -->
         <div class="price-card featured">
           <div class="badge">RECOMMENDED</div>
           <div class="plan-name">Three Months</div>
@@ -552,7 +503,7 @@
       <p>
         You already said you got a good energy from our conversation. I would like to keep that going with clear work and careful spending. Let us have that second conversation and decide the path that feels right.
       </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:18px 46px">
+      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:16px 42px">
         Reply to this proposal
       </a>
     </div>
@@ -561,66 +512,50 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance
-    const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    heroTl
-      .to(".hero-label", { opacity: 1, y: 0, scale: 1, duration: 1.2 }, 0.4)
-      .to(".hero h1", { opacity: 1, y: 0, rotateX: 0, duration: 1.5 }, 0.55)
-      .to(".hero-sub", { opacity: 1, y: 0, duration: 1.2 }, 0.85)
-      .to(".hero-cta", { opacity: 1, y: 0, duration: 1.1 }, 1.05);
+    // Hero
+    gsap.timeline({ defaults: { ease: "power3.out" } })
+      .to(".hero-label", { opacity: 1, y: 0, duration: 1 }, 0.3)
+      .to(".hero h1", { opacity: 1, y: 0, duration: 1.2 }, 0.45)
+      .to(".hero-sub", { opacity: 1, y: 0, duration: 1 }, 0.65)
+      .to(".hero-cta", { opacity: 1, y: 0, duration: 0.9 }, 0.85);
 
-    // Section titles
-    gsap.utils.toArray(".section-label, .section-title").forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 87%" }
-        }
-      );
+    // Titles
+    gsap.utils.toArray(".section-label, .section-title").forEach(el => {
+      gsap.fromTo(el, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 88%" }
+      });
     });
 
-    // Country cards
+    // Countries
     gsap.utils.toArray(".country-card").forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 70, rotateX: 12 },
-        {
-          opacity: 1, y: 0, rotateX: 0, duration: 1.15, delay: i * 0.14, ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 88%" }
-        }
-      );
+      gsap.fromTo(card, { opacity: 0, y: 50 }, {
+        opacity: 1, y: 0, duration: 0.9, delay: i * 0.1, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 90%" }
+      });
     });
 
     // Strategy blocks
     gsap.utils.toArray(".strategy-block").forEach((block, i) => {
-      gsap.fromTo(block,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 1.1, delay: i * 0.12, ease: "power3.out",
-          scrollTrigger: { trigger: block, start: "top 88%" }
-        }
-      );
+      gsap.fromTo(block, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.95, delay: i * 0.1, ease: "power3.out",
+        scrollTrigger: { trigger: block, start: "top 90%" }
+      });
     });
 
-    // Pricing cards
+    // Pricing
     gsap.utils.toArray(".price-card").forEach((card, i) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 80, rotateX: 10 },
-        {
-          opacity: 1, y: 0, rotateX: 0, duration: 1.2, delay: i * 0.15, ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 86%" }
-        }
-      );
+      gsap.fromTo(card, { opacity: 0, y: 50 }, {
+        opacity: 1, y: 0, duration: 1, delay: i * 0.12, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 88%" }
+      });
     });
 
     // Final
-    gsap.fromTo(".final h2, .final p, .final .btn",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1, y: 0, duration: 1.25, stagger: 0.18, ease: "power3.out",
-        scrollTrigger: { trigger: ".final", start: "top 82%" }
-      }
-    );
+    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 40 }, {
+      opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power3.out",
+      scrollTrigger: { trigger: ".final", start: "top 85%" }
+    });
   </script>
 </body>
 </html>
