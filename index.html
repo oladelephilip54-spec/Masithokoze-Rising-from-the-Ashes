@@ -12,75 +12,117 @@
     :root { --bg: #f8f6f2; --text: #1a1a1a; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 
+    /* ========== PRELOADER ========== */
     #preloader {
       position: fixed; inset: 0; background: #0a0a0a;
       display: flex; align-items: center; justify-content: center; z-index: 9999;
-      animation: preloaderOut 1.6s cubic-bezier(0.76, 0, 0.24, 1) 3.6s forwards;
+      animation: preloaderOut 1.8s cubic-bezier(0.76, 0, 0.24, 1) 4.2s forwards;
+    }
+    .name-wrap {
+      position: relative;
+      display: inline-block;
     }
     .name {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3.8rem, 14vw, 10rem); font-weight: 500; color: #f5f5f5;
       letter-spacing: -0.04em; line-height: 0.9;
+      position: relative;
     }
     .name span {
       display: inline-block; opacity: 0; transform: translateY(130%) rotate(6deg);
-      animation: letterIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: letterIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      position: relative;
     }
-    .name span:nth-child(1)  { animation-delay: 0.08s; }
-    .name span:nth-child(2)  { animation-delay: 0.16s; }
-    .name span:nth-child(3)  { animation-delay: 0.24s; }
-    .name span:nth-child(4)  { animation-delay: 0.32s; }
-    .name span:nth-child(5)  { animation-delay: 0.40s; }
-    .name span:nth-child(6)  { animation-delay: 0.48s; }
-    .name span:nth-child(7)  { animation-delay: 0.56s; }
-    .name span:nth-child(8)  { animation-delay: 0.64s; }
-    .name span:nth-child(9)  { animation-delay: 0.72s; }
-    .name span:nth-child(10) { animation-delay: 0.80s; }
-    .name span:nth-child(11) { animation-delay: 0.88s; }
+    .name span:nth-child(1)  { animation-delay: 0.1s; }
+    .name span:nth-child(2)  { animation-delay: 0.2s; }
+    .name span:nth-child(3)  { animation-delay: 0.3s; }
+    .name span:nth-child(4)  { animation-delay: 0.4s; }
+    .name span:nth-child(5)  { animation-delay: 0.5s; }
+    .name span:nth-child(6)  { animation-delay: 0.6s; }
+    .name span:nth-child(7)  { animation-delay: 0.7s; }
+    .name span:nth-child(8)  { animation-delay: 0.8s; }
+    .name span:nth-child(9)  { animation-delay: 0.9s; }
+    .name span:nth-child(10) { animation-delay: 1.0s; }
+    .name span:nth-child(11) { animation-delay: 1.1s; }
+
+    /* Glowing light that follows the text */
+    .glow {
+      position: absolute;
+      top: 50%; left: 0;
+      width: 40px; height: 80px;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(8px);
+      pointer-events: none;
+      transform: translateY(-50%);
+      animation: glowFollow 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+      opacity: 0;
+    }
+    @keyframes glowFollow {
+      0% { left: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
     @keyframes letterIn { to { opacity: 1; transform: translateY(0) rotate(0deg); } }
     @keyframes preloaderOut { to { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
 
+    /* ========== PROPOSAL ========== */
     .proposal {
       max-width: 760px; margin: 0 auto; padding: 160px 40px 200px;
-      opacity: 0; animation: contentReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) 4.8s forwards;
+      opacity: 0; animation: contentReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 5.4s forwards;
     }
     @keyframes contentReveal { to { opacity: 1; } }
-    .proposal p { font-size: 1.125rem; line-height: 1.95; margin-bottom: 2.2rem; font-weight: 300; }
-    .proposal p.signature { margin-top: 3.2rem; font-weight: 400; }
+
+    .proposal p {
+      font-size: 1.125rem; line-height: 1.95; margin-bottom: 2.2rem; font-weight: 300;
+      filter: blur(6px);
+      animation: textFilter 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-play-state: paused;
+    }
+    .proposal.revealed p { animation-play-state: running; }
+    .proposal p:nth-of-type(1)  { animation-delay: 0.2s; }
+    .proposal p:nth-of-type(2)  { animation-delay: 0.6s; }
+    .proposal p:nth-of-type(3)  { animation-delay: 1.0s; }
+    .proposal p:nth-of-type(4)  { animation-delay: 1.5s; }
+    .proposal p:nth-of-type(5)  { animation-delay: 2.1s; }
+    .proposal p:nth-of-type(6)  { animation-delay: 2.7s; }
+    .proposal p:nth-of-type(7)  { animation-delay: 3.3s; }
+    .proposal p:nth-of-type(8)  { animation-delay: 3.9s; }
+    .proposal p:nth-of-type(9)  { animation-delay: 4.5s; }
+    .proposal p:nth-of-type(10) { animation-delay: 5.1s; }
+    .proposal p:nth-of-type(11) { animation-delay: 5.7s; }
+    .proposal p:nth-of-type(12) { animation-delay: 6.3s; }
+    .proposal p:nth-of-type(13) { animation-delay: 6.9s; }
+    .proposal p:nth-of-type(14) { animation-delay: 7.5s; }
+
+    @keyframes textFilter {
+      to { filter: blur(0px); }
+    }
 
     .word { display: inline-block; overflow: hidden; vertical-align: bottom; margin-right: 0.22em; }
     .word > span {
-      display: inline-block; transform: translateY(120%);
-      animation: wordUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      display: inline-block; transform: translateY(110%);
+      animation: wordUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       animation-play-state: paused;
     }
     .proposal.revealed .word > span { animation-play-state: running; }
 
-    .proposal p:nth-of-type(1) .word > span  { animation-delay: calc(0.03s * var(--i)); }
-    .proposal p:nth-of-type(2) .word > span  { animation-delay: calc(0.6s + 0.02s * var(--i)); }
-    .proposal p:nth-of-type(3) .word > span  { animation-delay: calc(1.3s + 0.018s * var(--i)); }
-    .proposal p:nth-of-type(4) .word > span  { animation-delay: calc(2.0s + 0.016s * var(--i)); }
-    .proposal p:nth-of-type(5) .word > span  { animation-delay: calc(2.8s + 0.014s * var(--i)); }
-    .proposal p:nth-of-type(6) .word > span  { animation-delay: calc(3.6s + 0.014s * var(--i)); }
-    .proposal p:nth-of-type(7) .word > span  { animation-delay: calc(4.4s + 0.013s * var(--i)); }
-    .proposal p:nth-of-type(8) .word > span  { animation-delay: calc(5.2s + 0.013s * var(--i)); }
-    .proposal p:nth-of-type(9) .word > span  { animation-delay: calc(6.0s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(10) .word > span { animation-delay: calc(6.8s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(11) .word > span { animation-delay: calc(7.6s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(12) .word > span { animation-delay: calc(8.4s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(13) .word > span { animation-delay: calc(9.2s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(14) .word > span { animation-delay: calc(10s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(1) .word > span  { animation-delay: calc(0.04s * var(--i)); }
+    .proposal p:nth-of-type(2) .word > span  { animation-delay: calc(0.5s + 0.025s * var(--i)); }
+    .proposal p:nth-of-type(3) .word > span  { animation-delay: calc(1.1s + 0.022s * var(--i)); }
+    .proposal p:nth-of-type(4) .word > span  { animation-delay: calc(1.8s + 0.02s * var(--i)); }
+    .proposal p:nth-of-type(5) .word > span  { animation-delay: calc(2.6s + 0.018s * var(--i)); }
+    .proposal p:nth-of-type(6) .word > span  { animation-delay: calc(3.4s + 0.018s * var(--i)); }
+    .proposal p:nth-of-type(7) .word > span  { animation-delay: calc(4.2s + 0.016s * var(--i)); }
+    .proposal p:nth-of-type(8) .word > span  { animation-delay: calc(5.0s + 0.016s * var(--i)); }
+    .proposal p:nth-of-type(9) .word > span  { animation-delay: calc(5.8s + 0.015s * var(--i)); }
+    .proposal p:nth-of-type(10) .word > span { animation-delay: calc(6.6s + 0.015s * var(--i)); }
+    .proposal p:nth-of-type(11) .word > span { animation-delay: calc(7.4s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(12) .word > span { animation-delay: calc(8.2s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(13) .word > span { animation-delay: calc(9.0s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(14) .word > span { animation-delay: calc(9.8s + 0.014s * var(--i)); }
     @keyframes wordUp { to { transform: translateY(0); } }
-
-    .hl { position: relative; display: inline; font-weight: 500; }
-    .hl::after {
-      content: ''; position: absolute; left: 0; bottom: 0.05em; width: 0; height: 0.35em;
-      background: rgba(0, 0, 0, 0.12); z-index: -1;
-      animation: highlightDraw 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-play-state: paused;
-    }
-    .proposal.revealed .hl::after { animation-play-state: running; }
-    @keyframes highlightDraw { to { width: 100%; } }
 
     @media (max-width: 640px) {
       .proposal { padding: 120px 24px 140px; }
@@ -90,8 +132,11 @@
 </head>
 <body>
   <div id="preloader">
-    <div class="name">
-      <span>M</span><span>a</span><span>s</span><span>i</span><span>t</span><span>h</span><span>o</span><span>k</span><span>o</span><span>z</span><span>e</span>
+    <div class="name-wrap">
+      <div class="name">
+        <span>M</span><span>a</span><span>s</span><span>i</span><span>t</span><span>h</span><span>o</span><span>k</span><span>o</span><span>z</span><span>e</span>
+      </div>
+      <div class="glow"></div>
     </div>
   </div>
 
@@ -99,15 +144,15 @@
     <p>Hi Masithokoze,</p>
     <p>Thank you for being honest with me, and for looking at the proposal the way you did.</p>
     <p>You're right that £2,400 over three months has to make business sense. You need to know what you're paying for, how we'll measure the results, and what the campaign is actually working towards.</p>
-    <p>So I've rethought it around what matters most to you: <span class="hl">selling books</span>, getting your story in front of the right audiences, and <span class="hl">securing media interviews and podcast appearances</span>.</p>
-    <p>Here's what I'd deliver for <span class="hl">£600 upfront</span>: one press release, one media kit, one 60 second book trailer, and five promotional graphics for the launch, with two rounds of revisions on the trailer and one on the graphics. The fee covers all these creative deliverables and the campaign setup, with everything delivered by 14 November, provided we have the materials and approvals we need in time.</p>
-    <p>Alongside that, I'd build a <span class="hl">targeted list of podcasts, radio shows and publications</span> across the UK, Zimbabwe, Nigeria, the diaspora and the US. I'd handle the pitching and weekly follow ups, keep a <span class="hl">tracker you can access at any time</span>, and coordinate confirmed appearances, including getting interview questions to you in advance whenever the host provides them.</p>
+    <p>So I've rethought it around what matters most to you: selling books, getting your story in front of the right audiences, and securing media interviews and podcast appearances.</p>
+    <p>Here's what I'd deliver for £600 upfront: one press release, one media kit, one 60 second book trailer, and five promotional graphics for the launch, with two rounds of revisions on the trailer and one on the graphics. The fee covers all these creative deliverables and the campaign setup, with everything delivered by 14 November, provided we have the materials and approvals we need in time.</p>
+    <p>Alongside that, I'd build a targeted list of podcasts, radio shows and publications across the UK, Zimbabwe, Nigeria, the diaspora and the US. I'd handle the pitching and weekly follow ups, keep a tracker you can access at any time, and coordinate confirmed appearances, including getting interview questions to you in advance whenever the host provides them.</p>
     <p>When Hard Guys Cry came out, I used advertising to target relevant podcasts and media channels. We received a good number of responses and secured multiple appearances. That experience taught me the value of putting a book and its story in front of the right people rather than posting content and hoping someone notices.</p>
-    <p>Here's how the payment works. The £600 upfront covers the creative work and campaign setup. After that, the <span class="hl">success fee is £120 for every two completed interviews or podcast appearances</span> secured through my outreach. The <span class="hl">total campaign fee will not exceed £1,800</span>, including the initial £600. If an appearance is cancelled or rescheduled, it won't count until it's completed.</p>
+    <p>Here's how the payment works. The £600 upfront covers the creative work and campaign setup. After that, the success fee is £120 for every two completed interviews or podcast appearances secured through my outreach. The total campaign fee will not exceed £1,800, including the initial £600. If an appearance is cancelled or rescheduled, it won't count until it's completed.</p>
     <p>You'll have access to the tracker throughout the campaign, so you can see every pitch, every response and every confirmed appearance. I'll continue pitching and following up within the agreed campaign scope, even after the fee cap is reached, at no additional charge.</p>
     <p>I also want to be clear about the return. I can't honestly guarantee 800 book sales or promise that a particular publication or podcast will accept an interview. Those decisions aren't mine to make.</p>
-    <p>What I can commit to is the agreed creative, a defined pitching and follow up schedule, and <span class="hl">transparent reporting</span>. Since you don't currently have a website or an email list, I won't pretend we'll be tying individual book sales to individual pitches. We'll measure what we can actually track: responses, completed appearances and the reach of each appearance where data is available.</p>
-    <p>Your launch is three weeks out, so I'd appreciate a <span class="hl">yes or no by Monday</span>. If that's too soon on your side, tell me. I'd rather step back than hold you up.</p>
+    <p>What I can commit to is the agreed creative, a defined pitching and follow up schedule, and transparent reporting. Since you don't currently have a website or an email list, I won't pretend we'll be tying individual book sales to individual pitches. We'll measure what we can actually track: responses, completed appearances and the reach of each appearance where data is available.</p>
+    <p>Your launch is three weeks out, so I'd appreciate a yes or no by Monday. If that's too soon on your side, tell me. I'd rather step back than hold you up.</p>
     <p>Thank you again for being straightforward with me. I'd rather build something that makes sense for both of us than ask you to invest in a plan you aren't convinced by.</p>
     <p class="signature">Best,<br>Philip</p>
   </article>
@@ -115,47 +160,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.proposal p').forEach(p => {
-        const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null);
-        const nodes = [];
-        let node;
-        while (node = walker.nextNode()) nodes.push(node);
-
-        // Rebuild with word wrapping while preserving highlights
-        const fragment = document.createDocumentFragment();
+        const text = p.innerHTML;
+        const parts = text.split(/(\s+|<br\s*\/?>)/g);
+        p.innerHTML = '';
         let wordIndex = 0;
-
-        nodes.forEach(n => {
-          if (n.nodeType === Node.TEXT_NODE && n.textContent.trim()) {
-            n.textContent.split(/(\s+)/).forEach(part => {
-              if (part.trim()) {
-                const wrap = document.createElement('span');
-                wrap.className = 'word';
-                const inner = document.createElement('span');
-                inner.textContent = part;
-                inner.style.setProperty('--i', wordIndex++);
-                wrap.appendChild(inner);
-                fragment.appendChild(wrap);
-              } else {
-                fragment.appendChild(document.createTextNode(part));
-              }
-            });
-          } else if (n.nodeType === Node.ELEMENT_NODE && n.classList.contains('hl')) {
+        parts.forEach(part => {
+          if (/^\s*$/.test(part) || /<br/.test(part)) {
+            if (/<br/.test(part)) p.appendChild(document.createElement('br'));
+            else p.appendChild(document.createTextNode(part));
+          } else {
             const wrap = document.createElement('span');
             wrap.className = 'word';
-            const inner = n.cloneNode(true);
+            const inner = document.createElement('span');
+            inner.textContent = part;
             inner.style.setProperty('--i', wordIndex++);
             wrap.appendChild(inner);
-            fragment.appendChild(wrap);
-          } else if (n.nodeName === 'BR') {
-            fragment.appendChild(document.createElement('br'));
+            p.appendChild(wrap);
           }
         });
-
-        p.innerHTML = '';
-        p.appendChild(fragment);
       });
 
-      setTimeout(() => document.getElementById('proposal').classList.add('revealed'), 4800);
+      setTimeout(() => document.getElementById('proposal').classList.add('revealed'), 5400);
     });
   </script>
 </body>
