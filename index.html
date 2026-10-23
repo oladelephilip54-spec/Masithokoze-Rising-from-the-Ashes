@@ -1,481 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Campaign Proposal for Masithokoze Moyo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal for Masithokoze</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0c0a09;
-      --card: #1c1917;
-      --border: rgba(251, 146, 60, 0.14);
-      --text: #fafaf9;
-      --muted: #a8a29e;
-      --ember: #f97316;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #f7f6f3;
+      --text: #141414;
+      --muted: #5c5c5c;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.75;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
     }
 
-    .serif { font-family: 'Instrument Serif', Georgia, serif; }
-
-    body::before {
-      content: '';
+    /* ========== PRELOADER ========== */
+    #preloader {
       position: fixed;
-      top: -12%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 880px;
-      height: 580px;
-      background: radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 90px 0 50px;
-      text-align: center;
-    }
-
-    .hero-label {
-      display: inline-block;
-      padding: 6px 16px;
-      background: rgba(249,115,22,0.1);
-      border: 1px solid rgba(249,115,22,0.25);
-      border-radius: 100px;
-      font-size: 13px;
-      color: #fdba74;
-      margin-bottom: 22px;
-      opacity: 0;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 5.8vw, 3.6rem);
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-      opacity: 0;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, #fdba74, #f97316);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero .name {
-      font-size: 1.1rem;
-      color: #fdba74;
-      margin-bottom: 24px;
-      opacity: 0;
-    }
-
-    .hero-sub {
-      font-size: 1.08rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto;
-      opacity: 0;
-    }
-
-    /* Shared */
-    section {
-      padding: 42px 0;
-    }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #fdba74;
-      margin-bottom: 10px;
-      opacity: 0;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 3.6vw, 2.15rem);
-      margin-bottom: 22px;
-      opacity: 0;
-    }
-
-    .card {
-      background: linear-gradient(145deg, #1c1917, #151311);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px 28px;
-      margin-bottom: 16px;
-      opacity: 0;
-    }
-
-    .card h3 {
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: #fdba74;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #d6d3d1;
-      font-size: 1.02rem;
-    }
-
-    /* Pricing */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .price-card {
-      background: linear-gradient(160deg, #1c1917, #151311);
-      border: 1px solid rgba(251,146,60,0.18);
-      border-radius: 18px;
-      padding: 28px 24px;
-      position: relative;
-      transition: all 0.35s ease;
-      opacity: 0;
-    }
-
-    .price-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(249,115,22,0.4);
-      box-shadow: 0 0 36px rgba(249,115,22,0.15);
-    }
-
-    .price-card.featured {
-      border-color: rgba(249,115,22,0.45);
-      box-shadow: 0 0 32px rgba(249,115,22,0.2);
-    }
-
-    .badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-
-    .plan-name {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .plan-desc {
-      font-size: 13.5px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .price {
-      font-size: 2.35rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #fdba74, #f97316);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 4px;
-    }
-
-    .price-note {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .features {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .features li {
+      inset: 0;
+      background: #0a0a0a;
       display: flex;
-      gap: 9px;
-      padding: 4px 0;
-      font-size: 14px;
-      color: #d6d3d1;
-    }
-
-    .features li::before {
-      content: "✓";
-      color: #f97316;
-      font-weight: 700;
-    }
-
-    .btn {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
+      z-index: 9999;
+      animation: preloaderOut 1.2s cubic-bezier(0.76, 0, 0.24, 1) 2.8s forwards;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: white;
-      box-shadow: 0 0 24px rgba(249,115,22,0.35);
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.8rem, 14vw, 10rem);
+      font-weight: 500;
+      color: #f5f5f5;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 36px rgba(249,115,22,0.5);
+    .name span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(120%) rotate(8deg);
+      animation: letterIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .btn-ghost {
-      background: transparent;
+    .name span:nth-child(1)  { animation-delay: 0.05s; }
+    .name span:nth-child(2)  { animation-delay: 0.10s; }
+    .name span:nth-child(3)  { animation-delay: 0.15s; }
+    .name span:nth-child(4)  { animation-delay: 0.20s; }
+    .name span:nth-child(5)  { animation-delay: 0.25s; }
+    .name span:nth-child(6)  { animation-delay: 0.30s; }
+    .name span:nth-child(7)  { animation-delay: 0.35s; }
+    .name span:nth-child(8)  { animation-delay: 0.40s; }
+    .name span:nth-child(9)  { animation-delay: 0.45s; }
+    .name span:nth-child(10) { animation-delay: 0.50s; }
+    .name span:nth-child(11) { animation-delay: 0.55s; }
+
+    @keyframes letterIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    @keyframes preloaderOut {
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* ========== PROPOSAL ========== */
+    .proposal {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 160px 40px 200px;
+      opacity: 0;
+      animation: contentReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 3.6s forwards;
+    }
+
+    @keyframes contentReveal {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .proposal p {
+      font-size: 1.125rem;
+      line-height: 1.9;
+      margin-bottom: 2.1rem;
+      font-weight: 300;
       color: var(--text);
-      border: 1px solid rgba(251,146,60,0.25);
     }
 
-    .btn-ghost:hover {
-      border-color: #f97316;
-      background: rgba(249,115,22,0.08);
+    .proposal p.signature {
+      margin-top: 3rem;
+      font-weight: 400;
     }
 
-    .price-card .btn {
-      width: 100%;
-      border-radius: 12px;
+    /* Word-by-word reveal */
+    .word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      margin-right: 0.22em;
     }
 
-    .final {
-      text-align: center;
-      padding: 60px 0 80px;
+    .word span {
+      display: inline-block;
+      transform: translateY(115%);
+      animation: wordUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-play-state: paused;
     }
 
-    .final h2 {
-      font-size: clamp(1.7rem, 3.8vw, 2.3rem);
-      margin-bottom: 14px;
-      opacity: 0;
+    .proposal.revealed .word span {
+      animation-play-state: running;
     }
 
-    .final p {
-      color: var(--muted);
-      max-width: 400px;
-      margin: 0 auto 28px;
-      opacity: 0;
+    /* Stagger delays per paragraph */
+    .proposal p:nth-of-type(1) .word span  { animation-delay: calc(0.02s * var(--i)); }
+    .proposal p:nth-of-type(2) .word span  { animation-delay: calc(0.4s + 0.015s * var(--i)); }
+    .proposal p:nth-of-type(3) .word span  { animation-delay: calc(0.8s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(4) .word span  { animation-delay: calc(1.2s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(5) .word span  { animation-delay: calc(1.6s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(6) .word span  { animation-delay: calc(2.0s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(7) .word span  { animation-delay: calc(2.4s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(8) .word span  { animation-delay: calc(2.8s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(9) .word span  { animation-delay: calc(3.2s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(10) .word span { animation-delay: calc(3.6s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(11) .word span { animation-delay: calc(4.0s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(12) .word span { animation-delay: calc(4.4s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(13) .word span { animation-delay: calc(4.8s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(14) .word span { animation-delay: calc(5.2s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(15) .word span { animation-delay: calc(5.6s + 0.01s * var(--i)); }
+
+    @keyframes wordUp {
+      to {
+        transform: translateY(0);
+      }
     }
 
-    @media (max-width: 600px) {
-      .hero { padding: 70px 0 40px; }
+    @media (max-width: 640px) {
+      .proposal {
+        padding: 120px 24px 140px;
+      }
+      .proposal p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-label">Campaign Proposal</div>
-      <h1 class="serif"><span>Rising from The Ashes</span></h1>
-      <div class="name">for Masithokoze Moyo</div>
-      <p class="hero-sub">
-        Scope and numbers together, as you asked.
-      </p>
+  <!-- Loading Screen -->
+  <div id="preloader">
+    <div class="name">
+      <span>M</span><span>a</span><span>s</span><span>i</span><span>t</span><span>h</span><span>o</span><span>k</span><span>o</span><span>z</span><span>e</span>
     </div>
-  </section>
+  </div>
 
-  <!-- OPENING -->
-  <section>
-    <div class="container">
-      <div class="card">
-        <p>Thank you for the conversation, and for being so clear about what you want to see. Here's the scope and the numbers together, as you asked.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE BET -->
-  <section>
-    <div class="container">
-      <div class="section-label">The bet we're making</div>
-      <div class="card">
-        <p>At £2 to £3 a copy, this can't be won by selling books one at a time through ads. It's won by putting the book in front of groups that buy in tens and hundreds, libraries, universities, schools, churches, leadership and mentoring programmes, and by getting you onto platforms where one interview reaches thousands of readers at once. Ads have a job here, but it's to point warm traffic at the page and the coverage, not to chase strangers.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CREDIBILITY -->
-  <section>
-    <div class="container">
-      <div class="section-label">Who I've done this for</div>
-      <div class="card">
-        <p>I'm currently working with Michael Vecchione on Hard Guys Cry. I've also worked on several of his earlier books, handling pre order announcements, signed copy messaging, bookstore callouts, reader focused copy and website traffic. Alongside that I've worked with Teresa Michael and B.G. Howard, and built trailers and social campaigns for authors, gaming and business clients. More of it is at philipoladele.com.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PHASES -->
-  <section>
-    <div class="container">
-      <div class="section-label">How the work unfolds</div>
-      <h2 class="section-title serif">Three clear phases</h2>
-
-      <div class="card">
-        <h3>Phase one, before 14 November</h3>
-        <p>A landing page built for the Kidderminster launch, with your story, the charity pledge, buy links and an email signup. Meta Pixel and Google Analytics installed so we see what's working from day one. A book trailer cut for Facebook, Instagram, LinkedIn and YouTube. Email capture set up, since there's no list today. A press pack ready for local, national and diaspora media, with the launch day assets finished early.</p>
-      </div>
-
-      <div class="card">
-        <h3>Phase two, launch week</h3>
-        <p>Amplify the Kidderminster event before, during and after. Turn the Cameroon radio interview, the New York writer and The Herald coverage into a run of posts rather than one off announcements. Retargeting live on Facebook and Instagram to anyone who has visited the page, watched the trailer or engaged.</p>
-      </div>
-
-      <div class="card">
-        <h3>Phase three, after launch</h3>
-        <p>Weekly pitching to podcasts, radio and publications, logged in one tracker so you see every pitch and response. Library, university and school submissions, with a pack prepared for each. A reader review push on Amazon and Goodreads. A monthly report on reach, where readers are, email growth, media features, submissions and sales wherever tracking allows.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- OPTIONS -->
-  <section id="packages">
-    <div class="container">
-      <div class="section-label">Two ways in</div>
-      <h2 class="section-title serif">Clear options</h2>
-
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="plan-name">Book Trailer</div>
-          <div class="plan-desc">Available on its own</div>
-          <div class="price">£50</div>
-          <div class="price-note">One time</div>
-          <ul class="features">
-            <li>Short compelling trailer</li>
-            <li>Cut for Facebook, Instagram, LinkedIn and YouTube</li>
-            <li>Ready to use across platforms</li>
-          </ul>
-        </div>
-
-        <div class="price-card">
-          <div class="plan-name">One Month</div>
-          <div class="plan-desc">The launch itself, done properly</div>
-          <div class="price">£950</div>
-          <div class="price-note">Landing page, trailer, tracking, press pack and launch week</div>
-          <ul class="features">
-            <li>Landing page and tracking</li>
-            <li>Book trailer</li>
-            <li>Press pack</li>
-            <li>Launch week amplification</li>
-            <li>A way to see how I work</li>
-          </ul>
-        </div>
-
-        <div class="price-card featured">
-          <div class="badge">SUGGESTED</div>
-          <div class="plan-name">Three Months</div>
-          <div class="plan-desc">Through launch and two full months after</div>
-          <div class="price">£2,400</div>
-          <div class="price-note">Paid £800 a month</div>
-          <ul class="features">
-            <li>Everything in the launch month</li>
-            <li>Library and university submissions</li>
-            <li>Reader review push</li>
-            <li>Ongoing pitching and reporting</li>
-            <li>The coverage needs somewhere to go</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY THIS PRICE -->
-  <section>
-    <div class="container">
-      <div class="card">
-        <h3>Why £2,400 and not more</h3>
-        <p>At your net per copy, £2,400 is roughly 800 books. I could ask for more, but then the book has to sell itself out of a hole it can't. What this fee actually buys is the institutional doors and the media features you listed as your measures, and those are worth far more to you than the copies are.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ADS -->
-  <section>
-    <div class="container">
-      <div class="card">
-        <h3>The honest part about ads</h3>
-        <p>I haven't built ad money into either fee. You fund the ad budget directly, capped at £200 a month, and I don't touch it. Over three months that's £600 of ads, roughly 200 books at your net per copy, so we keep it pointed at warm traffic and stop anything that isn't earning its place. I'd rather show you that number than bury it in a package.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMMITMENTS -->
-  <section>
-    <div class="container">
-      <div class="section-label">What I commit to</div>
-      <div class="card">
-        <p>The landing page live within two weeks of starting, the trailer within three, at least 12 pitches to podcasts, radio and publications in the first month, and a written update every Friday, no exceptions.</p>
-      </div>
-
-      <div class="section-label" style="margin-top:28px">How we measure it</div>
-      <div class="card">
-        <p>Using your own list: Amazon and physical sales, reach and where it's coming from, library and university submissions, reader reviews, and the number and reach of media features across print, online, radio, TV and podcast.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL -->
-  <section class="final">
-    <div class="container">
-      <h2 class="serif">Ready when you are</h2>
-      <p>
-        Reply with which option suits and I'll send the agreement over with a start date, so we're fully live before the 14th.
-      </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary">
-        Reply to this proposal
-      </a>
-    </div>
-  </section>
+  <!-- Proposal -->
+  <article class="proposal" id="proposal">
+    <p>Hi Masithokoze,</p>
+    <p>Thank you for being honest with me, and for looking at the proposal the way you did.</p>
+    <p>You're right that £2,400 over three months has to make business sense. You need to know what you're paying for, how we'll measure the results, and what the campaign is actually working towards.</p>
+    <p>So I've rethought it around what matters most to you: selling books, getting your story in front of the right audiences, and securing media interviews and podcast appearances.</p>
+    <p>Your story is the starting point. A Zimbabwe to UK memoir about overcoming adversity, with proceeds from book sales going to Mind, The King's Trust and mental health hospitals back home, gives us a meaningful story to pitch to radio hosts, podcast producers and publications. We need to get that story in front of the people who will want to hear it.</p>
+    <p>Here's what I'd deliver for £600 upfront: one press release, one media kit, one 60 second book trailer, and five promotional graphics for the launch, with two rounds of revisions on the trailer and one on the graphics. The fee covers all these creative deliverables and the campaign setup, with everything delivered by 14 November, provided we have the materials and approvals we need in time.</p>
+    <p>Alongside that, I'd build a targeted list of podcasts, radio shows and publications across the UK, Zimbabwe, Nigeria, the diaspora and the US. I'd handle the pitching and weekly follow ups, keep a tracker you can access at any time, and coordinate confirmed appearances, including getting interview questions to you in advance whenever the host provides them.</p>
+    <p>When Hard Guys Cry came out, I used advertising to target relevant podcasts and media channels. We received a good number of responses and secured multiple appearances. That experience taught me the value of putting a book and its story in front of the right people rather than posting content and hoping someone notices.</p>
+    <p>Here's how the payment works. The £600 upfront covers the creative work and campaign setup. After that, the success fee is £120 for every two completed interviews or podcast appearances secured through my outreach. The total campaign fee will not exceed £1,800, including the initial £600. If an appearance is cancelled or rescheduled, it won't count until it's completed.</p>
+    <p>You'll have access to the tracker throughout the campaign, so you can see every pitch, every response and every confirmed appearance. I'll continue pitching and following up within the agreed campaign scope, even after the fee cap is reached, at no additional charge.</p>
+    <p>I also want to be clear about the return. I can't honestly guarantee 800 book sales or promise that a particular publication or podcast will accept an interview. Those decisions aren't mine to make.</p>
+    <p>What I can commit to is the agreed creative, a defined pitching and follow up schedule, and transparent reporting. Since you don't currently have a website or an email list, I won't pretend we'll be tying individual book sales to individual pitches. We'll measure what we can actually track: responses, completed appearances and the reach of each appearance where data is available.</p>
+    <p>Your launch is three weeks out, so I'd appreciate a yes or no by Monday. If that's too soon on your side, tell me. I'd rather step back than hold you up.</p>
+    <p>Thank you again for being straightforward with me. I'd rather build something that makes sense for both of us than ask you to invest in a plan you aren't convinced by.</p>
+    <p class="signature">Best,<br>Philip</p>
+  </article>
 
   <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.timeline()
-      .to(".hero-label", { opacity: 1, duration: 0.7 }, 0.15)
-      .to(".hero h1", { opacity: 1, duration: 0.85 }, 0.3)
-      .to(".hero .name", { opacity: 1, duration: 0.75 }, 0.45)
-      .to(".hero-sub", { opacity: 1, duration: 0.7 }, 0.6);
-
-    gsap.utils.toArray(".section-label, .section-title, .card, .price-card").forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 22 }, {
-        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 92%" }
+    // Minimal JS only to split words and assign stagger index
+    document.addEventListener('DOMContentLoaded', () => {
+      const paragraphs = document.querySelectorAll('.proposal p');
+      paragraphs.forEach(p => {
+        const html = p.innerHTML;
+        const parts = html.split(/(\s+|<br\s*\/?>)/g);
+        p.innerHTML = '';
+        let wordIndex = 0;
+        parts.forEach(part => {
+          if (/^\s*$/.test(part) || /<br/.test(part)) {
+            if (/<br/.test(part)) p.appendChild(document.createElement('br'));
+            else p.appendChild(document.createTextNode(part));
+          } else {
+            const wrap = document.createElement('span');
+            wrap.className = 'word';
+            const inner = document.createElement('span');
+            inner.textContent = part;
+            inner.style.setProperty('--i', wordIndex);
+            wrap.appendChild(inner);
+            p.appendChild(wrap);
+            wordIndex++;
+          }
+        });
       });
-    });
 
-    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 18 }, {
-      opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out",
-      scrollTrigger: { trigger: ".final", start: "top 90%" }
+      // Trigger content animation after preloader
+      setTimeout(() => {
+        document.getElementById('proposal').classList.add('revealed');
+      }, 3600);
     });
   </script>
 </body>
