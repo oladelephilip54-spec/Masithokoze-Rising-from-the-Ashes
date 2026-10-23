@@ -35,6 +35,7 @@
       color: var(--text);
       line-height: 1.75;
       overflow-x: hidden;
+      perspective: 1200px;
     }
 
     .serif {
@@ -47,75 +48,86 @@
       inset: 0;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.04;
+      opacity: 0.035;
       mix-blend-mode: overlay;
       background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
     }
 
     .container {
-      max-width: 880px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 28px;
     }
 
-    /* Hero */
+    /* ========== HERO ========== */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 140px 0 120px;
+      padding: 140px 0 130px;
       position: relative;
+      overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%;
+      top: -25%;
       left: 50%;
       transform: translateX(-50%);
-      width: 1100px;
-      height: 800px;
-      background: radial-gradient(ellipse at center, rgba(139,92,246,0.14) 0%, transparent 68%);
+      width: 1200px;
+      height: 900px;
+      background: radial-gradient(ellipse at center, rgba(139,92,246,0.16) 0%, transparent 65%);
       pointer-events: none;
+      animation: pulseGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
     }
 
     .hero-label {
       display: inline-block;
       padding: 8px 20px;
       background: rgba(139,92,246,0.1);
-      border: 1px solid rgba(139,92,246,0.22);
+      border: 1px solid rgba(139,92,246,0.25);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
       color: #c4b5fd;
-      margin-bottom: 40px;
+      margin-bottom: 42px;
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(30px) scale(0.95);
     }
 
     .hero h1 {
-      font-size: clamp(2.8rem, 6.2vw, 4.6rem);
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      margin-bottom: 32px;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 36px;
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(60px) rotateX(12deg);
+      transform-origin: center bottom;
+      perspective: 800px;
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, #c4b5fd 0%, #a78bfa 100%);
+      display: inline-block;
+      background: linear-gradient(105deg, #e9d5ff 0%, #c4b5fd 40%, #a78bfa 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-sub {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--muted);
-      max-width: 540px;
-      margin-bottom: 52px;
+      max-width: 560px;
+      margin-bottom: 56px;
       opacity: 0;
-      transform: translateY(36px);
+      transform: translateY(40px);
     }
 
     .hero-cta {
@@ -123,7 +135,7 @@
       gap: 18px;
       flex-wrap: wrap;
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(30px);
     }
 
     /* Buttons */
@@ -131,7 +143,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 36px;
+      padding: 17px 38px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 15px;
@@ -139,17 +151,19 @@
       transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
       border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #8b5cf6, #7c3aed);
       color: white;
-      box-shadow: 0 10px 36px rgba(139,92,246,0.28);
+      box-shadow: 0 12px 40px rgba(139,92,246,0.3);
     }
 
     .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(139,92,246,0.42);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 55px rgba(139,92,246,0.45);
     }
 
     .btn-ghost {
@@ -159,66 +173,76 @@
     }
 
     .btn-ghost:hover {
-      border-color: rgba(139,92,246,0.4);
+      border-color: rgba(139,92,246,0.45);
       background: rgba(139,92,246,0.08);
+      transform: translateY(-3px);
     }
 
     /* Sections */
     section {
-      padding: 120px 0;
+      padding: 130px 0;
+      position: relative;
     }
 
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #a78bfa;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       opacity: 0;
     }
 
     .section-title {
-      font-size: clamp(2.1rem, 4.4vw, 2.9rem);
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
+      font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+      letter-spacing: -0.035em;
+      margin-bottom: 30px;
       opacity: 0;
     }
 
-    /* Countries */
+    /* Countries with 3D */
     .countries {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      margin-top: 52px;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 22px;
+      margin-top: 56px;
+      perspective: 1000px;
     }
 
     .country-card {
-      background: linear-gradient(165deg, #16161e 0%, #0e0e13 100%);
+      background: linear-gradient(165deg, #17171f 0%, #0e0e13 100%);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 34px 22px;
+      border-radius: 26px;
+      padding: 36px 22px;
       text-align: center;
-      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       opacity: 0;
-      transform: translateY(50px);
-      box-shadow: 0 25px 60px -20px rgba(0,0,0,0.55);
+      transform: translateY(60px) rotateX(8deg);
+      transform-style: preserve-3d;
+      box-shadow: 0 30px 70px -25px rgba(0,0,0,0.6);
     }
 
     .country-card:hover {
-      transform: translateY(-12px);
-      border-color: rgba(139,92,246,0.32);
-      box-shadow: 0 35px 70px -15px rgba(0,0,0,0.65);
+      transform: translateY(-16px) rotateX(0deg) scale(1.03);
+      border-color: rgba(139,92,246,0.35);
+      box-shadow: 0 40px 90px -20px rgba(0,0,0,0.7);
     }
 
     .country-card.primary {
-      border-color: rgba(139,92,246,0.38);
-      background: linear-gradient(165deg, rgba(139,92,246,0.13) 0%, #0e0e13 100%);
+      border-color: rgba(139,92,246,0.4);
+      background: linear-gradient(165deg, rgba(139,92,246,0.14) 0%, #0e0e13 100%);
     }
 
     .country-flag {
-      font-size: 36px;
+      font-size: 38px;
       margin-bottom: 16px;
+      display: inline-block;
+      transition: transform 0.5s ease;
+    }
+
+    .country-card:hover .country-flag {
+      transform: scale(1.15) rotateY(12deg);
     }
 
     .country-name {
@@ -232,25 +256,26 @@
       color: var(--muted);
     }
 
-    /* Strategy Card */
+    /* Strategy Card with deeper 3D */
     .strategy-wrapper {
-      margin-top: 48px;
-      perspective: 1400px;
+      margin-top: 52px;
+      perspective: 1600px;
     }
 
     .strategy-card {
-      background: linear-gradient(150deg, #15151d 0%, #0b0b10 100%);
+      background: linear-gradient(155deg, #16161e 0%, #0a0a0f 100%);
       border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 36px;
-      padding: 56px 52px;
+      border-radius: 40px;
+      padding: 60px 56px;
       position: relative;
       overflow: hidden;
       opacity: 0;
-      transform: translateY(80px);
+      transform: translateY(100px) rotateX(6deg);
+      transform-style: preserve-3d;
       box-shadow:
-        0 50px 120px -30px rgba(0,0,0,0.75),
-        0 25px 50px -20px rgba(0,0,0,0.5),
-        inset 0 1px 1px rgba(255,255,255,0.06);
+        0 60px 140px -40px rgba(0,0,0,0.8),
+        0 30px 60px -25px rgba(0,0,0,0.55),
+        inset 0 1px 1px rgba(255,255,255,0.07);
     }
 
     .strategy-card .sheen {
@@ -258,16 +283,15 @@
       inset: 0;
       border-radius: inherit;
       pointer-events: none;
-      background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.045) 0%, transparent 42%);
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.05) 0%, transparent 40%);
       mix-blend-mode: screen;
-      transition: opacity 0.3s ease;
     }
 
     .strategy-card p {
       color: #d4d4d8;
-      font-size: 1.08rem;
-      margin-bottom: 26px;
-      line-height: 1.85;
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      line-height: 1.9;
       position: relative;
       z-index: 2;
     }
@@ -276,69 +300,71 @@
       margin-bottom: 0;
     }
 
-    /* Pricing */
+    /* Pricing with 3D */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-      margin-top: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 34px;
+      margin-top: 64px;
+      perspective: 1200px;
     }
 
     .price-card {
-      background: linear-gradient(165deg, #16161e 0%, #0e0e13 100%);
+      background: linear-gradient(165deg, #17171f 0%, #0e0e13 100%);
       border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 48px 40px;
+      border-radius: 34px;
+      padding: 52px 42px;
       position: relative;
-      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       opacity: 0;
-      transform: translateY(60px);
-      box-shadow: 0 30px 70px -20px rgba(0,0,0,0.55);
+      transform: translateY(80px) rotateX(10deg);
+      transform-style: preserve-3d;
+      box-shadow: 0 35px 80px -25px rgba(0,0,0,0.6);
     }
 
     .price-card:hover {
-      transform: translateY(-14px);
-      box-shadow: 0 40px 90px -15px rgba(0,0,0,0.65);
+      transform: translateY(-18px) rotateX(0deg) scale(1.02);
+      box-shadow: 0 50px 110px -20px rgba(0,0,0,0.7);
     }
 
     .price-card.featured {
-      border-color: rgba(139,92,246,0.42);
-      background: linear-gradient(170deg, rgba(139,92,246,0.11) 0%, #0e0e13 100%);
+      border-color: rgba(139,92,246,0.45);
+      background: linear-gradient(170deg, rgba(139,92,246,0.12) 0%, #0e0e13 100%);
     }
 
     .price-card.featured:hover {
-      box-shadow: 0 40px 100px -15px rgba(139,92,246,0.22);
+      box-shadow: 0 50px 120px -20px rgba(139,92,246,0.25);
     }
 
     .badge {
       position: absolute;
-      top: 24px;
-      right: 24px;
+      top: 26px;
+      right: 26px;
       background: linear-gradient(135deg, #8b5cf6, #a855f7);
       color: white;
       font-size: 11px;
       font-weight: 700;
-      padding: 7px 15px;
+      padding: 7px 16px;
       border-radius: 100px;
       letter-spacing: 0.04em;
     }
 
     .plan-name {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 10px;
     }
 
     .plan-desc {
-      font-size: 14.5px;
+      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 38px;
     }
 
     .price {
-      font-size: 3.4rem;
+      font-size: 3.6rem;
       font-weight: 700;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.045em;
       margin-bottom: 8px;
       background: linear-gradient(90deg, #ffffff, #c4b5fd);
       -webkit-background-clip: text;
@@ -346,21 +372,21 @@
     }
 
     .price-note {
-      font-size: 14.5px;
+      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
 
     .features {
       list-style: none;
-      margin-bottom: 44px;
+      margin-bottom: 46px;
     }
 
     .features li {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      padding: 10px 0;
+      padding: 11px 0;
       font-size: 15.5px;
       color: #d4d4d8;
     }
@@ -380,21 +406,27 @@
     /* Trailer */
     .trailer-box {
       background: linear-gradient(135deg, rgba(34,197,94,0.07), rgba(59,130,246,0.07));
-      border: 1px solid rgba(34,197,94,0.18);
-      border-radius: 26px;
-      padding: 36px 40px;
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 28px;
+      padding: 38px 44px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
-      margin-top: 52px;
+      margin-top: 56px;
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(60px);
+      transition: all 0.5s ease;
+    }
+
+    .trailer-box:hover {
+      transform: translateY(-6px);
+      border-color: rgba(34,197,94,0.35);
     }
 
     .trailer-price {
-      font-size: 2.3rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: #4ade80;
     }
@@ -402,32 +434,35 @@
     /* Final */
     .final {
       text-align: center;
-      padding: 150px 0 160px;
+      padding: 160px 0 170px;
     }
 
     .final h2 {
-      font-size: clamp(2.2rem, 4.8vw, 3.3rem);
-      margin-bottom: 26px;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      margin-bottom: 28px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto 48px;
-      font-size: 1.18rem;
+      max-width: 520px;
+      margin: 0 auto 52px;
+      font-size: 1.2rem;
       opacity: 0;
     }
 
     @media (max-width: 640px) {
       .hero {
-        padding-top: 110px;
+        padding-top: 120px;
       }
       .strategy-card {
-        padding: 40px 28px;
+        padding: 42px 28px;
       }
       .price {
-        font-size: 2.7rem;
+        font-size: 2.8rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
       }
     }
   </style>
@@ -492,7 +527,7 @@
       <div class="strategy-wrapper">
         <div class="strategy-card" id="strategyCard">
           <div class="sheen"></div>
-          <p>For Rising from The Ashes, I wouldn’t start by spending money at ads and hoping the book reaches people globally. I’d start with what you already have: your audience of around 60,000 followers, your strong LinkedIn presence, the Cameroon radio interview, the Zimbabwean press coverage, and your November 14 launch in Kidderminster. My first step would be to build a dedicated landing page for your book, with your story, purchase links, the charity commitment, and an email sign up. I’d install the Meta Pixel and, where practical, the Conversions API, alongside Google Analytics, so I can track where visitors come from, what content attracts them, and which campaigns generate sales or enquiries. I’d then test small, focused Facebook and Instagram ads targeting readers in the UK and Nigeria before expanding towards Zimbabwean and African diaspora communities, personal development readers, churches, schools and universities. Rather than spending heavily on strangers, I’d retarget people who have visited your page, watched your trailer or engaged with your content. Since you earn around £2 to £3 per book, I’d be careful with the budget and make sure we are not spending more to acquire a buyer than the sale can reasonably support. The goal is to combine book sales with opportunities for interviews, speaking engagements, educational partnerships and wider recognition.</p>
+          <p>For Rising from The Ashes, I wouldn’t start by spending money (without proper plan) at ads and hoping the book reaches people globally. I’d start with what you already have: your audience of around 60,000 followers, your strong LinkedIn presence, the Cameroon radio interview, the Zimbabwean press coverage, and your November 14 launch in Kidderminster. My first step would be to build a dedicated landing page for your book, with your story, purchase links, the charity commitment, and an email sign up. I’d install the Meta Pixel and, where practical, the Conversions API, alongside Google Analytics, so I can track where visitors come from, what content attracts them, and which campaigns generate sales or enquiries. I’d then test small, focused Facebook and Instagram ads targeting readers in the UK and Nigeria before expanding towards Zimbabwean and African diaspora communities, personal development readers, churches, schools and universities. Rather than spending heavily on strangers, I’d retarget people who have visited your page, watched your trailer or engaged with your content. Since you earn around £2 to £3 per book, I’d be careful with the budget and make sure we are not spending more to acquire a buyer than the sale can reasonably support. The goal is to combine book sales with opportunities for interviews, speaking engagements, educational partnerships and wider recognition.</p>
 
           <p>Over the three months, I’d use the first phase to build the landing page, produce a compelling book trailer, set up tracking and start collecting email subscribers. Around your November 14 launch, I’d amplify your strongest stories, media mentions and reader reactions, then use the results to refine the campaigns and reach more of the right people. I’d also build your email list with permission and use it to share reader stories, interviews, book updates and opportunities to engage with your message, rather than simply asking people to buy repeatedly. Alongside this, I’d actively pitch podcasts, radio stations, online publications, libraries, universities, churches and leadership programmes, keeping track of every pitch, response and feature. Through my work with Michael Vecchione on Hard Guys Cry, Teresa Michael and B.G. Howard, which you can explore through my portfolio at philipoladele.com, I’ve come to see book promotion as more than posting content. I want to build a system that keeps putting the book in front of the right people and gives us clear numbers to work with. I’d review performance weekly and report on reach, audience locations, email growth, media opportunities, reviews and sales wherever tracking allows. My aim is to help you build visibility that continues long after launch day, while making sure every pound we spend has a clear purpose.</p>
         </div>
@@ -548,7 +583,7 @@
       <div class="trailer-box">
         <div>
           <div style="font-weight:600; margin-bottom:6px; font-size:17px">Book Trailer</div>
-          <div style="font-size:14.5px; color:var(--muted)">A short compelling video for Facebook, Instagram, LinkedIn and YouTube</div>
+          <div style="font-size:15px; color:var(--muted)">A short compelling video for Facebook, Instagram, LinkedIn and YouTube</div>
         </div>
         <div class="trailer-price">£50</div>
       </div>
@@ -562,7 +597,7 @@
       <p>
         You already said you got a good energy from our conversation. I would like to keep that going with clear work and careful spending. Let us have that second conversation and decide the path that feels right.
       </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:18px 44px">
+      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:18px 46px">
         Reply to this proposal
       </a>
     </div>
@@ -571,40 +606,60 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero entrance
+    // ========== HERO ENTRANCE (richer motion) ==========
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    heroTl
-      .to(".hero-label", { opacity: 1, y: 0, duration: 1.1 }, 0.35)
-      .to(".hero h1", { opacity: 1, y: 0, duration: 1.25 }, 0.5)
-      .to(".hero-sub", { opacity: 1, y: 0, duration: 1.1 }, 0.7)
-      .to(".hero-cta", { opacity: 1, y: 0, duration: 1 }, 0.9);
 
-    // Section labels and titles
+    heroTl
+      .to(".hero-label", {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2
+      }, 0.4)
+      .to(".hero h1", {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1.5
+      }, 0.55)
+      .to(".hero-sub", {
+        opacity: 1,
+        y: 0,
+        duration: 1.2
+      }, 0.85)
+      .to(".hero-cta", {
+        opacity: 1,
+        y: 0,
+        duration: 1.1
+      }, 1.05);
+
+    // ========== SECTION TITLES ==========
     gsap.utils.toArray(".section-label, .section-title").forEach((el) => {
       gsap.fromTo(el,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.1,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 86%"
+            start: "top 87%"
           }
         }
       );
     });
 
-    // Country cards
+    // ========== COUNTRY CARDS (3D entrance) ==========
     gsap.utils.toArray(".country-card").forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: 70, rotateX: 12 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          delay: i * 0.13,
+          rotateX: 0,
+          duration: 1.15,
+          delay: i * 0.14,
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
@@ -614,22 +669,23 @@
       );
     });
 
-    // Strategy card
+    // ========== STRATEGY CARD ==========
     gsap.fromTo(".strategy-card",
-      { opacity: 0, y: 90 },
+      { opacity: 0, y: 110, rotateX: 8 },
       {
         opacity: 1,
         y: 0,
-        duration: 1.4,
+        rotateX: 0,
+        duration: 1.5,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".strategy-card",
-          start: "top 80%"
+          start: "top 82%"
         }
       }
     );
 
-    // Mouse lighting on strategy card
+    // Mouse reactive lighting
     const strategyCard = document.getElementById("strategyCard");
     if (strategyCard) {
       strategyCard.addEventListener("mousemove", (e) => {
@@ -641,31 +697,32 @@
       });
     }
 
-    // Pricing cards
+    // ========== PRICING CARDS (3D) ==========
     gsap.utils.toArray(".price-card").forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 70 },
+        { opacity: 0, y: 90, rotateX: 12 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.15,
-          delay: i * 0.18,
+          rotateX: 0,
+          duration: 1.25,
+          delay: i * 0.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 85%"
+            start: "top 86%"
           }
         }
       );
     });
 
-    // Trailer box
+    // ========== TRAILER ==========
     gsap.fromTo(".trailer-box",
-      { opacity: 0, y: 55 },
+      { opacity: 0, y: 70 },
       {
         opacity: 1,
         y: 0,
-        duration: 1.1,
+        duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".trailer-box",
@@ -674,18 +731,18 @@
       }
     );
 
-    // Final section
+    // ========== FINAL ==========
     gsap.fromTo(".final h2, .final p, .final .btn",
-      { opacity: 0, y: 45 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        duration: 1.15,
-        stagger: 0.18,
+        duration: 1.25,
+        stagger: 0.2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".final",
-          start: "top 80%"
+          start: "top 82%"
         }
       }
     );
