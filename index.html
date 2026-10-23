@@ -20,8 +20,15 @@
       --purple: #a855f7;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -31,7 +38,10 @@
       overflow-x: hidden;
     }
 
-    .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+    .serif {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-weight: 400;
+    }
 
     .container {
       max-width: 860px;
@@ -49,9 +59,11 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: 0; left: 50%;
+      top: 0;
+      left: 50%;
       transform: translateX(-50%);
-      width: 700px; height: 400px;
+      width: 700px;
+      height: 400px;
       background: radial-gradient(ellipse, rgba(139,92,246,0.15), transparent 70%);
       pointer-events: none;
     }
@@ -103,7 +115,7 @@
       animation: fadeUp 0.9s 0.65s forwards;
     }
 
-    /* ===== BUTTONS (inspired by glowing pills) ===== */
+    /* ===== BUTTONS ===== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -380,7 +392,10 @@
 
     /* ===== ANIMATIONS ===== */
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .reveal {
@@ -395,9 +410,15 @@
     }
 
     @media (max-width: 640px) {
-      .hero { padding-top: 80px; }
-      .approach-card { padding: 28px 22px; }
-      .price { font-size: 2.4rem; }
+      .hero {
+        padding-top: 80px;
+      }
+      .approach-card {
+        padding: 28px 22px;
+      }
+      .price {
+        font-size: 2.4rem;
+      }
     }
   </style>
 </head>
@@ -560,7 +581,10 @@
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -30px 0px'
+    });
 
     reveals.forEach(el => observer.observe(el));
 
@@ -569,7 +593,7 @@
       card.style.transitionDelay = `${i * 0.09}s`;
     });
 
-    // Stagger pricing
+    // Stagger pricing cards
     document.querySelectorAll('.price-card').forEach((card, i) => {
       card.style.transitionDelay = `${i * 0.12}s`;
     });
