@@ -15,9 +15,9 @@
     }
 
     :root {
-      --bg: #f7f6f3;
-      --text: #141414;
-      --muted: #5c5c5c;
+      --bg: #f8f6f2;
+      --text: #1a1a1a;
+      --highlight: #1a1a1a;
     }
 
     html {
@@ -40,7 +40,7 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      animation: preloaderOut 1.2s cubic-bezier(0.76, 0, 0.24, 1) 2.8s forwards;
+      animation: preloaderOut 1.6s cubic-bezier(0.76, 0, 0.24, 1) 3.6s forwards;
     }
 
     .name {
@@ -55,21 +55,21 @@
     .name span {
       display: inline-block;
       opacity: 0;
-      transform: translateY(120%) rotate(8deg);
-      animation: letterIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(130%) rotate(6deg);
+      animation: letterIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .name span:nth-child(1)  { animation-delay: 0.05s; }
-    .name span:nth-child(2)  { animation-delay: 0.10s; }
-    .name span:nth-child(3)  { animation-delay: 0.15s; }
-    .name span:nth-child(4)  { animation-delay: 0.20s; }
-    .name span:nth-child(5)  { animation-delay: 0.25s; }
-    .name span:nth-child(6)  { animation-delay: 0.30s; }
-    .name span:nth-child(7)  { animation-delay: 0.35s; }
-    .name span:nth-child(8)  { animation-delay: 0.40s; }
-    .name span:nth-child(9)  { animation-delay: 0.45s; }
-    .name span:nth-child(10) { animation-delay: 0.50s; }
-    .name span:nth-child(11) { animation-delay: 0.55s; }
+    .name span:nth-child(1)  { animation-delay: 0.08s; }
+    .name span:nth-child(2)  { animation-delay: 0.16s; }
+    .name span:nth-child(3)  { animation-delay: 0.24s; }
+    .name span:nth-child(4)  { animation-delay: 0.32s; }
+    .name span:nth-child(5)  { animation-delay: 0.40s; }
+    .name span:nth-child(6)  { animation-delay: 0.48s; }
+    .name span:nth-child(7)  { animation-delay: 0.56s; }
+    .name span:nth-child(8)  { animation-delay: 0.64s; }
+    .name span:nth-child(9)  { animation-delay: 0.72s; }
+    .name span:nth-child(10) { animation-delay: 0.80s; }
+    .name span:nth-child(11) { animation-delay: 0.88s; }
 
     @keyframes letterIn {
       to {
@@ -92,29 +92,27 @@
       margin: 0 auto;
       padding: 160px 40px 200px;
       opacity: 0;
-      animation: contentReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 3.6s forwards;
+      animation: contentReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) 4.8s forwards;
     }
 
     @keyframes contentReveal {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
     .proposal p {
       font-size: 1.125rem;
-      line-height: 1.9;
-      margin-bottom: 2.1rem;
+      line-height: 1.95;
+      margin-bottom: 2.2rem;
       font-weight: 300;
       color: var(--text);
     }
 
     .proposal p.signature {
-      margin-top: 3rem;
+      margin-top: 3.2rem;
       font-weight: 400;
     }
 
-    /* Word-by-word reveal */
+    /* Word animation */
     .word {
       display: inline-block;
       overflow: hidden;
@@ -124,8 +122,8 @@
 
     .word span {
       display: inline-block;
-      transform: translateY(115%);
-      animation: wordUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(120%);
+      animation: wordUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       animation-play-state: paused;
     }
 
@@ -133,27 +131,51 @@
       animation-play-state: running;
     }
 
-    /* Stagger delays per paragraph */
-    .proposal p:nth-of-type(1) .word span  { animation-delay: calc(0.02s * var(--i)); }
-    .proposal p:nth-of-type(2) .word span  { animation-delay: calc(0.4s + 0.015s * var(--i)); }
-    .proposal p:nth-of-type(3) .word span  { animation-delay: calc(0.8s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(4) .word span  { animation-delay: calc(1.2s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(5) .word span  { animation-delay: calc(1.6s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(6) .word span  { animation-delay: calc(2.0s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(7) .word span  { animation-delay: calc(2.4s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(8) .word span  { animation-delay: calc(2.8s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(9) .word span  { animation-delay: calc(3.2s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(10) .word span { animation-delay: calc(3.6s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(11) .word span { animation-delay: calc(4.0s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(12) .word span { animation-delay: calc(4.4s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(13) .word span { animation-delay: calc(4.8s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(14) .word span { animation-delay: calc(5.2s + 0.01s * var(--i)); }
-    .proposal p:nth-of-type(15) .word span { animation-delay: calc(5.6s + 0.01s * var(--i)); }
+    .proposal p:nth-of-type(1) .word span  { animation-delay: calc(0.03s * var(--i)); }
+    .proposal p:nth-of-type(2) .word span  { animation-delay: calc(0.6s + 0.02s * var(--i)); }
+    .proposal p:nth-of-type(3) .word span  { animation-delay: calc(1.3s + 0.018s * var(--i)); }
+    .proposal p:nth-of-type(4) .word span  { animation-delay: calc(2.0s + 0.016s * var(--i)); }
+    .proposal p:nth-of-type(5) .word span  { animation-delay: calc(2.8s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(6) .word span  { animation-delay: calc(3.6s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(7) .word span  { animation-delay: calc(4.4s + 0.013s * var(--i)); }
+    .proposal p:nth-of-type(8) .word span  { animation-delay: calc(5.2s + 0.013s * var(--i)); }
+    .proposal p:nth-of-type(9) .word span  { animation-delay: calc(6.0s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(10) .word span { animation-delay: calc(6.8s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(11) .word span { animation-delay: calc(7.6s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(12) .word span { animation-delay: calc(8.4s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(13) .word span { animation-delay: calc(9.2s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(14) .word span { animation-delay: calc(10s + 0.012s * var(--i)); }
 
     @keyframes wordUp {
-      to {
-        transform: translateY(0);
-      }
+      to { transform: translateY(0); }
+    }
+
+    /* Animated highlights */
+    .hl {
+      position: relative;
+      display: inline;
+      font-weight: 500;
+    }
+
+    .hl::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0.05em;
+      width: 0;
+      height: 0.35em;
+      background: rgba(0, 0, 0, 0.12);
+      z-index: -1;
+      animation: highlightDraw 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-play-state: paused;
+    }
+
+    .proposal.revealed .hl::after {
+      animation-play-state: running;
+    }
+
+    @keyframes highlightDraw {
+      to { width: 100%; }
     }
 
     @media (max-width: 640px) {
@@ -162,41 +184,37 @@
       }
       .proposal p {
         font-size: 1.05rem;
-        line-height: 1.8;
+        line-height: 1.85;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Loading Screen -->
   <div id="preloader">
     <div class="name">
       <span>M</span><span>a</span><span>s</span><span>i</span><span>t</span><span>h</span><span>o</span><span>k</span><span>o</span><span>z</span><span>e</span>
     </div>
   </div>
 
-  <!-- Proposal -->
   <article class="proposal" id="proposal">
     <p>Hi Masithokoze,</p>
     <p>Thank you for being honest with me, and for looking at the proposal the way you did.</p>
     <p>You're right that £2,400 over three months has to make business sense. You need to know what you're paying for, how we'll measure the results, and what the campaign is actually working towards.</p>
-    <p>So I've rethought it around what matters most to you: selling books, getting your story in front of the right audiences, and securing media interviews and podcast appearances.</p>
-    <p>Your story is the starting point. A Zimbabwe to UK memoir about overcoming adversity, with proceeds from book sales going to Mind, The King's Trust and mental health hospitals back home, gives us a meaningful story to pitch to radio hosts, podcast producers and publications. We need to get that story in front of the people who will want to hear it.</p>
-    <p>Here's what I'd deliver for £600 upfront: one press release, one media kit, one 60 second book trailer, and five promotional graphics for the launch, with two rounds of revisions on the trailer and one on the graphics. The fee covers all these creative deliverables and the campaign setup, with everything delivered by 14 November, provided we have the materials and approvals we need in time.</p>
-    <p>Alongside that, I'd build a targeted list of podcasts, radio shows and publications across the UK, Zimbabwe, Nigeria, the diaspora and the US. I'd handle the pitching and weekly follow ups, keep a tracker you can access at any time, and coordinate confirmed appearances, including getting interview questions to you in advance whenever the host provides them.</p>
+    <p>So I've rethought it around what matters most to you: <span class="hl">selling books</span>, getting your story in front of the right audiences, and <span class="hl">securing media interviews and podcast appearances</span>.</p>
+    <p>Here's what I'd deliver for <span class="hl">£600 upfront</span>: one press release, one media kit, one 60 second book trailer, and five promotional graphics for the launch, with two rounds of revisions on the trailer and one on the graphics. The fee covers all these creative deliverables and the campaign setup, with everything delivered by 14 November, provided we have the materials and approvals we need in time.</p>
+    <p>Alongside that, I'd build a <span class="hl">targeted list of podcasts, radio shows and publications</span> across the UK, Zimbabwe, Nigeria, the diaspora and the US. I'd handle the pitching and weekly follow ups, keep a <span class="hl">tracker you can access at any time</span>, and coordinate confirmed appearances, including getting interview questions to you in advance whenever the host provides them.</p>
     <p>When Hard Guys Cry came out, I used advertising to target relevant podcasts and media channels. We received a good number of responses and secured multiple appearances. That experience taught me the value of putting a book and its story in front of the right people rather than posting content and hoping someone notices.</p>
-    <p>Here's how the payment works. The £600 upfront covers the creative work and campaign setup. After that, the success fee is £120 for every two completed interviews or podcast appearances secured through my outreach. The total campaign fee will not exceed £1,800, including the initial £600. If an appearance is cancelled or rescheduled, it won't count until it's completed.</p>
+    <p>Here's how the payment works. The £600 upfront covers the creative work and campaign setup. After that, the <span class="hl">success fee is £120 for every two completed interviews or podcast appearances</span> secured through my outreach. The <span class="hl">total campaign fee will not exceed £1,800</span>, including the initial £600. If an appearance is cancelled or rescheduled, it won't count until it's completed.</p>
     <p>You'll have access to the tracker throughout the campaign, so you can see every pitch, every response and every confirmed appearance. I'll continue pitching and following up within the agreed campaign scope, even after the fee cap is reached, at no additional charge.</p>
     <p>I also want to be clear about the return. I can't honestly guarantee 800 book sales or promise that a particular publication or podcast will accept an interview. Those decisions aren't mine to make.</p>
-    <p>What I can commit to is the agreed creative, a defined pitching and follow up schedule, and transparent reporting. Since you don't currently have a website or an email list, I won't pretend we'll be tying individual book sales to individual pitches. We'll measure what we can actually track: responses, completed appearances and the reach of each appearance where data is available.</p>
-    <p>Your launch is three weeks out, so I'd appreciate a yes or no by Monday. If that's too soon on your side, tell me. I'd rather step back than hold you up.</p>
+    <p>What I can commit to is the agreed creative, a defined pitching and follow up schedule, and <span class="hl">transparent reporting</span>. Since you don't currently have a website or an email list, I won't pretend we'll be tying individual book sales to individual pitches. We'll measure what we can actually track: responses, completed appearances and the reach of each appearance where data is available.</p>
+    <p>Your launch is three weeks out, so I'd appreciate a <span class="hl">yes or no by Monday</span>. If that's too soon on your side, tell me. I'd rather step back than hold you up.</p>
     <p>Thank you again for being straightforward with me. I'd rather build something that makes sense for both of us than ask you to invest in a plan you aren't convinced by.</p>
     <p class="signature">Best,<br>Philip</p>
   </article>
 
   <script>
-    // Minimal JS only to split words and assign stagger index
     document.addEventListener('DOMContentLoaded', () => {
       const paragraphs = document.querySelectorAll('.proposal p');
       paragraphs.forEach(p => {
@@ -209,6 +227,24 @@
             if (/<br/.test(part)) p.appendChild(document.createElement('br'));
             else p.appendChild(document.createTextNode(part));
           } else {
+            // Preserve highlight spans
+            if (part.includes('class="hl"')) {
+              const temp = document.createElement('div');
+              temp.innerHTML = part;
+              const hl = temp.querySelector('.hl');
+              if (hl) {
+                const wrap = document.createElement('span');
+                wrap.className = 'word';
+                const inner = document.createElement('span');
+                inner.innerHTML = hl.innerHTML;
+                inner.className = 'hl';
+                inner.style.setProperty('--i', wordIndex);
+                wrap.appendChild(inner);
+                p.appendChild(wrap);
+                wordIndex++;
+                return;
+              }
+            }
             const wrap = document.createElement('span');
             wrap.className = 'word';
             const inner = document.createElement('span');
@@ -221,10 +257,9 @@
         });
       });
 
-      // Trigger content animation after preloader
       setTimeout(() => {
         document.getElementById('proposal').classList.add('revealed');
-      }, 3600);
+      }, 4800);
     });
   </script>
 </body>
