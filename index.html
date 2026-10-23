@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rising from The Ashes Campaign Proposal</title>
+  <title>Rising from The Ashes – Campaign Proposal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -11,12 +11,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root {
-      --bg: #F7F4EF;
+      --bg: #F9F6F1;
       --card: #FFFFFF;
-      --border: rgba(0,0,0,0.08);
-      --text: #0F172A;
-      --muted: #64748B;
-      --accent: #2563EB;
+      --border: rgba(0,0,0,0.07);
+      --text: #1C1917;
+      --muted: #78716C;
+      --accent: #B45309;
+      --accent-soft: #D97706;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,95 +27,93 @@
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.75;
-      overflow-x: hidden;
+      line-height: 1.7;
     }
 
     .serif { font-family: 'Instrument Serif', Georgia, serif; }
 
     .container {
-      max-width: 920px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 24px;
     }
 
     /* Hero */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 140px 0 120px;
+      padding: 100px 0 70px;
+      text-align: center;
     }
 
     .hero-label {
       display: inline-block;
-      padding: 7px 18px;
-      background: rgba(37,99,235,0.08);
-      border: 1px solid rgba(37,99,235,0.18);
+      padding: 6px 16px;
+      background: rgba(180,83,9,0.08);
+      border: 1px solid rgba(180,83,9,0.18);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
-      color: #1D4ED8;
-      margin-bottom: 36px;
+      color: #B45309;
+      margin-bottom: 28px;
       opacity: 0;
-      transform: translateY(24px);
     }
 
     .hero h1 {
-      font-size: clamp(2.9rem, 6.5vw, 4.8rem);
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      margin-bottom: 28px;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
       opacity: 0;
-      transform: translateY(40px);
     }
 
-    .hero h1 span {
-      color: #2563EB;
+    .hero h1 .name {
+      display: block;
+      font-size: 0.55em;
+      font-weight: 500;
+      color: #B45309;
+      margin-top: 10px;
+      letter-spacing: 0.02em;
+      opacity: 0;
     }
 
     .hero-sub {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--muted);
-      max-width: 540px;
-      margin-bottom: 48px;
+      max-width: 520px;
+      margin: 20px auto 36px;
       opacity: 0;
-      transform: translateY(30px);
     }
 
     .hero-cta {
       display: flex;
-      gap: 16px;
+      gap: 14px;
+      justify-content: center;
       flex-wrap: wrap;
       opacity: 0;
-      transform: translateY(24px);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 34px;
+      padding: 14px 30px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 15px;
       text-decoration: none;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.3s ease;
       border: none;
       cursor: pointer;
     }
 
     .btn-primary {
-      background: #2563EB;
+      background: #B45309;
       color: white;
-      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+      box-shadow: 0 8px 24px rgba(180,83,9,0.25);
     }
 
     .btn-primary:hover {
-      background: #1D4ED8;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(37,99,235,0.35);
+      background: #92400E;
+      transform: translateY(-2px);
     }
 
     .btn-ghost {
@@ -124,221 +123,128 @@
     }
 
     .btn-ghost:hover {
-      border-color: #2563EB;
-      background: rgba(37,99,235,0.05);
+      border-color: #B45309;
+      background: rgba(180,83,9,0.05);
     }
 
     section {
-      padding: 110px 0;
+      padding: 70px 0;
     }
 
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #2563EB;
-      margin-bottom: 16px;
+      color: #B45309;
+      margin-bottom: 12px;
+      text-align: center;
       opacity: 0;
     }
 
     .section-title {
-      font-size: clamp(2rem, 4.2vw, 2.8rem);
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
+      font-size: clamp(1.9rem, 4vw, 2.5rem);
+      letter-spacing: -0.025em;
+      margin-bottom: 40px;
+      text-align: center;
       opacity: 0;
     }
 
-    /* ===== ORBIT / GLOBE SECTION ===== */
-    .orbit-section {
+    /* Markets */
+    .markets-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 40px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .market-item {
       text-align: center;
-      padding: 80px 0 60px;
+      opacity: 0;
     }
 
-    .globe-wrapper {
-      position: relative;
-      width: 320px;
-      height: 320px;
-      margin: 40px auto 50px;
-      perspective: 1000px;
-    }
-
-    .globe {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: 
-        radial-gradient(circle at 30% 30%, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 100%);
-      position: relative;
-      box-shadow: 
-        inset -20px -20px 40px rgba(0,0,0,0.08),
-        0 25px 50px rgba(0,0,0,0.1);
-      animation: rotateGlobe 40s linear infinite;
-      overflow: hidden;
-    }
-
-    .globe::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background-image: radial-gradient(#94a3b8 1.2px, transparent 1.2px);
-      background-size: 12px 12px;
-      opacity: 0.45;
-    }
-
-    .globe::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
-      pointer-events: none;
-    }
-
-    @keyframes rotateGlobe {
-      from { transform: rotateY(0deg); }
-      to { transform: rotateY(360deg); }
-    }
-
-    .orbit-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid rgba(37,99,235,0.2);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) rotateX(70deg);
-    }
-
-    .orbit-ring:nth-child(1) { width: 360px; height: 360px; }
-    .orbit-ring:nth-child(2) { width: 420px; height: 420px; opacity: 0.6; }
-    .orbit-ring:nth-child(3) { width: 480px; height: 480px; opacity: 0.35; }
-
-    .country-dot {
-      position: absolute;
+    .market-dot {
       width: 12px;
       height: 12px;
-      background: #2563EB;
+      background: #B45309;
       border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.25);
-      animation: pulseDot 2.5s ease-in-out infinite;
+      margin: 0 auto 14px;
+      box-shadow: 0 0 0 5px rgba(180,83,9,0.15);
     }
 
-    .country-dot::after {
-      content: attr(data-label);
-      position: absolute;
-      top: -28px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      font-weight: 600;
-      color: #0F172A;
-      white-space: nowrap;
-      background: white;
-      padding: 3px 8px;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    .market-item strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
     }
 
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.25); }
-    }
-
-    /* Position the four countries roughly on the globe */
-    .dot-zimbabwe { top: 58%; left: 52%; }
-    .dot-uk { top: 28%; left: 46%; }
-    .dot-nigeria { top: 52%; left: 48%; }
-    .dot-usa { top: 35%; left: 22%; }
-
-    .countries-list {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      opacity: 0;
-    }
-
-    .country-item {
-      text-align: center;
+    .market-item span {
       font-size: 14px;
       color: var(--muted);
     }
 
-    .country-item strong {
-      display: block;
-      color: var(--text);
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
     /* Strategy */
     .strategy-blocks {
-      margin-top: 48px;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
     .strategy-block {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 32px 36px;
+      border-radius: 20px;
+      padding: 28px 30px;
       opacity: 0;
-      transform: translateY(40px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
     }
 
     .strategy-block h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 12px;
-      color: #1E40AF;
+      margin-bottom: 10px;
+      color: #92400E;
     }
 
     .strategy-block p {
-      color: #475569;
-      font-size: 1.05rem;
-      line-height: 1.8;
+      color: #44403C;
+      font-size: 1.02rem;
+      line-height: 1.75;
     }
 
     /* Pricing */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 24px;
-      margin-top: 56px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
     }
 
     .price-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 40px 32px;
+      border-radius: 24px;
+      padding: 36px 28px;
       position: relative;
-      transition: all 0.45s ease;
+      transition: all 0.35s ease;
       opacity: 0;
-      transform: translateY(50px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
     }
 
     .price-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.09);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.07);
     }
 
     .price-card.featured {
-      border-color: #2563EB;
-      box-shadow: 0 15px 45px rgba(37,99,235,0.12);
+      border-color: #B45309;
     }
 
     .badge {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #2563EB;
+      top: 18px;
+      right: 18px;
+      background: #B45309;
       color: white;
       font-size: 11px;
       font-weight: 700;
@@ -347,7 +253,7 @@
     }
 
     .plan-name {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 6px;
     }
@@ -355,74 +261,73 @@
     .plan-desc {
       font-size: 14px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
     .price {
-      font-size: 3rem;
+      font-size: 2.7rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-      margin-bottom: 6px;
-      color: #0F172A;
+      margin-bottom: 4px;
     }
 
     .price-note {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .features {
       list-style: none;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .features li {
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 8px 0;
-      font-size: 15px;
-      color: #334155;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: 14.5px;
+      color: #44403C;
     }
 
     .features li::before {
       content: "✓";
-      color: #2563EB;
+      color: #B45309;
       font-weight: 700;
-      flex-shrink: 0;
     }
 
     .price-card .btn {
       width: 100%;
-      border-radius: 14px;
+      border-radius: 12px;
     }
 
     /* Final */
     .final {
       text-align: center;
-      padding: 130px 0 150px;
+      padding: 90px 0 110px;
     }
 
     .final h2 {
-      font-size: clamp(2.1rem, 4.5vw, 3rem);
-      margin-bottom: 22px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 18px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 40px;
-      font-size: 1.15rem;
+      max-width: 460px;
+      margin: 0 auto 36px;
       opacity: 0;
     }
 
-    @media (max-width: 640px) {
-      .globe-wrapper { width: 260px; height: 260px; }
-      .orbit-ring:nth-child(1) { width: 300px; height: 300px; }
-      .orbit-ring:nth-child(2) { width: 350px; height: 350px; }
-      .orbit-ring:nth-child(3) { width: 400px; height: 400px; }
+    @media (max-width: 600px) {
+      .markets-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .hero {
+        padding: 80px 0 50px;
+      }
     }
   </style>
 </head>
@@ -431,13 +336,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="hero-label">Campaign Proposal for Masithokoze Moyo</div>
+      <div class="hero-label">Campaign Proposal</div>
       <h1 class="serif">
-        A clear plan for<br>
-        <span>Rising from The Ashes</span>
+        Rising from The Ashes
+        <span class="name">for Masithokoze Moyo</span>
       </h1>
       <p class="hero-sub">
-        Built around what you already have: your story, your audience, and your November launch. Designed to grow carefully from there.
+        Built around what you already have: your story, your audience, and your November launch.
       </p>
       <div class="hero-cta">
         <a href="#packages" class="btn btn-primary">View packages</a>
@@ -446,41 +351,32 @@
     </div>
   </section>
 
-  <!-- ORBIT / COUNTRIES -->
-  <section class="orbit-section">
+  <!-- MARKETS -->
+  <section>
     <div class="container">
       <div class="section-label">Priority Markets</div>
       <h2 class="section-title serif">Where we begin</h2>
 
-      <div class="globe-wrapper">
-        <div class="orbit-ring"></div>
-        <div class="orbit-ring"></div>
-        <div class="orbit-ring"></div>
-
-        <div class="globe">
-          <div class="country-dot dot-zimbabwe" data-label="Zimbabwe"></div>
-          <div class="country-dot dot-uk" data-label="United Kingdom"></div>
-          <div class="country-dot dot-nigeria" data-label="Nigeria"></div>
-          <div class="country-dot dot-usa" data-label="United States"></div>
-        </div>
-      </div>
-
-      <div class="countries-list">
-        <div class="country-item">
+      <div class="markets-grid">
+        <div class="market-item">
+          <div class="market-dot"></div>
           <strong>Zimbabwe</strong>
-          Home and primary focus
+          <span>Home and primary focus</span>
         </div>
-        <div class="country-item">
+        <div class="market-item">
+          <div class="market-dot"></div>
           <strong>United Kingdom</strong>
-          Launch market
+          <span>Launch market</span>
         </div>
-        <div class="country-item">
+        <div class="market-item">
+          <div class="market-dot"></div>
           <strong>Nigeria</strong>
-          Early growth market
+          <span>Early growth market</span>
         </div>
-        <div class="country-item">
+        <div class="market-item">
+          <div class="market-dot"></div>
           <strong>United States</strong>
-          Diaspora and media
+          <span>Diaspora and media</span>
         </div>
       </div>
     </div>
@@ -519,11 +415,10 @@
   <!-- PACKAGES -->
   <section id="packages">
     <div class="container">
-      <div class="section-label" style="text-align:center">Investment</div>
-      <h2 class="section-title serif" style="text-align:center">Clear packages</h2>
+      <div class="section-label">Investment</div>
+      <h2 class="section-title serif">Clear packages</h2>
 
       <div class="pricing-grid">
-        <!-- Trailer first -->
         <div class="price-card">
           <div class="plan-name">Book Trailer</div>
           <div class="plan-desc">Standalone short video for promotion</div>
@@ -582,9 +477,9 @@
     <div class="container">
       <h2 class="serif">I am ready when you are</h2>
       <p>
-        You already said you got a good energy from our conversation. I would like to keep that going with clear work and careful spending. Let us have that second conversation and decide the path that feels right.
+        You already said you got a good energy from our conversation. I would like to keep that going with clear work and careful spending.
       </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:16px 42px">
+      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary">
         Reply to this proposal
       </a>
     </div>
@@ -593,57 +488,46 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero
-    gsap.timeline({ defaults: { ease: "power3.out" } })
-      .to(".hero-label", { opacity: 1, y: 0, duration: 1 }, 0.3)
-      .to(".hero h1", { opacity: 1, y: 0, duration: 1.2 }, 0.45)
-      .to(".hero-sub", { opacity: 1, y: 0, duration: 1 }, 0.65)
-      .to(".hero-cta", { opacity: 1, y: 0, duration: 0.9 }, 0.85);
+    // Hero animation
+    gsap.timeline()
+      .to(".hero-label", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.2)
+      .to(".hero h1", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 0.35)
+      .to(".hero h1 .name", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.55)
+      .to(".hero-sub", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.7)
+      .to(".hero-cta", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.85);
 
-    // Titles
+    // Rest of animations
     gsap.utils.toArray(".section-label, .section-title").forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 40 }, {
-        opacity: 1, y: 0, duration: 1, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 88%" }
+      gsap.fromTo(el, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 90%" }
       });
     });
 
-    // Globe entrance
-    gsap.from(".globe-wrapper", {
-      opacity: 0,
-      scale: 0.8,
-      duration: 1.4,
-      ease: "power3.out",
-      scrollTrigger: { trigger: ".globe-wrapper", start: "top 85%" }
+    gsap.utils.toArray(".market-item").forEach((item, i) => {
+      gsap.fromTo(item, { opacity: 0, y: 25 }, {
+        opacity: 1, y: 0, duration: 0.8, delay: i * 0.1, ease: "power3.out",
+        scrollTrigger: { trigger: item, start: "top 92%" }
+      });
     });
 
-    gsap.to(".countries-list", {
-      opacity: 1,
-      duration: 1,
-      delay: 0.4,
-      scrollTrigger: { trigger: ".countries-list", start: "top 90%" }
-    });
-
-    // Strategy
     gsap.utils.toArray(".strategy-block").forEach((block, i) => {
-      gsap.fromTo(block, { opacity: 0, y: 40 }, {
-        opacity: 1, y: 0, duration: 0.95, delay: i * 0.1, ease: "power3.out",
-        scrollTrigger: { trigger: block, start: "top 90%" }
+      gsap.fromTo(block, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.85, delay: i * 0.08, ease: "power3.out",
+        scrollTrigger: { trigger: block, start: "top 92%" }
       });
     });
 
-    // Pricing
     gsap.utils.toArray(".price-card").forEach((card, i) => {
-      gsap.fromTo(card, { opacity: 0, y: 50 }, {
-        opacity: 1, y: 0, duration: 1, delay: i * 0.12, ease: "power3.out",
-        scrollTrigger: { trigger: card, start: "top 88%" }
+      gsap.fromTo(card, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.9, delay: i * 0.1, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 90%" }
       });
     });
 
-    // Final
-    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 40 }, {
-      opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power3.out",
-      scrollTrigger: { trigger: ".final", start: "top 85%" }
+    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 30 }, {
+      opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: "power3.out",
+      scrollTrigger: { trigger: ".final", start: "top 88%" }
     });
   </script>
 </body>
