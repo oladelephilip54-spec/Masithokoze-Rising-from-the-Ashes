@@ -3,94 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rising from The Ashes – Campaign Proposal for Masithokoze Moyo</title>
+  <title>Rising from The Ashes – Campaign Proposal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root {
-      --bg: #09090b;
-      --card: #121216;
+      --bg: #07070a;
+      --card: #111116;
       --border: rgba(255,255,255,0.07);
-      --text: #fafafa;
+      --text: #f4f4f5;
       --muted: #a1a1aa;
       --accent: #8b5cf6;
-      --green: #22c55e;
-      --blue: #3b82f6;
-      --purple: #a855f7;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    .serif {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-weight: 400;
+    .serif { font-family: 'Instrument Serif', Georgia, serif; }
+
+    /* Film grain overlay */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
     }
 
     .container {
-      max-width: 860px;
+      max-width: 820px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* ===== HERO ===== */
+    /* Hero */
     .hero {
-      padding: 110px 0 90px;
-      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 0 100px;
       position: relative;
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
+      top: -10%;
       left: 50%;
       transform: translateX(-50%);
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(139,92,246,0.15), transparent 70%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.12), transparent 70%);
       pointer-events: none;
     }
 
     .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: rgba(139,92,246,0.12);
+      display: inline-block;
+      padding: 7px 18px;
+      background: rgba(139,92,246,0.1);
       border: 1px solid rgba(139,92,246,0.25);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
       color: #c4b5fd;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.6rem);
-      line-height: 1.15;
-      margin-bottom: 22px;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.12;
       letter-spacing: -0.03em;
+      margin-bottom: 24px;
       opacity: 0;
-      animation: fadeUp 0.9s 0.35s forwards;
     }
 
     .hero h1 span {
@@ -98,34 +97,31 @@
     }
 
     .hero-sub {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 40px;
+      max-width: 520px;
+      margin-bottom: 48px;
       opacity: 0;
-      animation: fadeUp 0.9s 0.5s forwards;
     }
 
     .hero-cta {
       display: flex;
-      gap: 14px;
-      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUp 0.9s 0.65s forwards;
     }
 
-    /* ===== BUTTONS ===== */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 28px;
+      padding: 15px 32px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 15px;
       text-decoration: none;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       border: none;
       cursor: pointer;
     }
@@ -137,8 +133,8 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(139,92,246,0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(139,92,246,0.45);
     }
 
     .btn-ghost {
@@ -152,59 +148,51 @@
       background: rgba(139,92,246,0.08);
     }
 
-    /* ===== SECTIONS ===== */
+    /* Sections */
     section {
-      padding: 80px 0;
+      padding: 100px 0;
     }
 
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #a78bfa;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       opacity: 0;
     }
 
     .section-title {
-      font-size: clamp(1.7rem, 4vw, 2.3rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
       opacity: 0;
     }
 
-    .section-text {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 640px;
-      margin-bottom: 40px;
-      opacity: 0;
-    }
-
-    /* ===== COUNTRIES ===== */
+    /* Countries */
     .countries {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 16px;
-      margin-top: 20px;
+      margin-top: 40px;
     }
 
     .country-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px 18px;
+      border-radius: 20px;
+      padding: 28px 20px;
       text-align: center;
-      transition: all 0.4s ease;
+      transition: all 0.45s ease;
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(30px);
     }
 
     .country-card:hover {
+      transform: translateY(-8px);
       border-color: rgba(139,92,246,0.35);
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     }
 
     .country-card.primary {
@@ -212,65 +200,53 @@
       background: linear-gradient(160deg, rgba(139,92,246,0.12), var(--card));
     }
 
-    .country-flag {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+    .country-flag { font-size: 32px; margin-bottom: 12px; }
+    .country-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+    .country-tag { font-size: 13px; color: var(--muted); }
 
-    .country-name {
-      font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-
-    .country-tag {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* ===== APPROACH CARD ===== */
-    .approach-card {
+    /* Strategy Card */
+    .strategy-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 36px;
-      margin-top: 20px;
+      border-radius: 28px;
+      padding: 48px 44px;
+      margin-top: 32px;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
     }
 
-    .approach-card p {
+    .strategy-card p {
       color: #d4d4d8;
-      font-size: 1.02rem;
-      margin-bottom: 18px;
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+      line-height: 1.75;
     }
 
-    .approach-card p:last-child {
-      margin-bottom: 0;
-    }
+    .strategy-card p:last-child { margin-bottom: 0; }
 
-    /* ===== PRICING ===== */
+    /* Pricing */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
-      margin-top: 40px;
+      margin-top: 48px;
     }
 
     .price-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 36px 30px;
+      border-radius: 28px;
+      padding: 40px 32px;
       position: relative;
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
 
     .price-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
     }
 
     .price-card.featured {
@@ -279,36 +255,36 @@
     }
 
     .price-card.featured:hover {
-      box-shadow: 0 20px 60px rgba(139,92,246,0.2);
+      box-shadow: 0 25px 70px rgba(139,92,246,0.18);
     }
 
     .badge {
       position: absolute;
-      top: 18px;
-      right: 18px;
+      top: 20px;
+      right: 20px;
       background: linear-gradient(135deg, #8b5cf6, #a855f7);
       color: white;
       font-size: 11px;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 100px;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
     }
 
     .plan-name {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .plan-desc {
       font-size: 14px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .price {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 6px;
@@ -318,22 +294,22 @@
     }
 
     .price-note {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .features {
       list-style: none;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .features li {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      padding: 8px 0;
-      font-size: 14.5px;
+      padding: 9px 0;
+      font-size: 15px;
       color: #d4d4d8;
     }
 
@@ -346,15 +322,15 @@
 
     .price-card .btn {
       width: 100%;
-      border-radius: 14px;
+      border-radius: 16px;
     }
 
-    /* ===== TRAILER ===== */
+    /* Trailer */
     .trailer-box {
-      background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(59,130,246,0.08));
+      background: linear-gradient(135deg, rgba(34,197,94,0.07), rgba(59,130,246,0.07));
       border: 1px solid rgba(34,197,94,0.2);
-      border-radius: 20px;
-      padding: 28px 30px;
+      border-radius: 22px;
+      padding: 30px 34px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -362,81 +338,58 @@
       flex-wrap: wrap;
       margin-top: 40px;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
 
     .trailer-price {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #4ade80;
     }
 
-    /* ===== FINAL CTA ===== */
+    /* Final */
     .final {
       text-align: center;
-      padding: 90px 0 120px;
+      padding: 120px 0 140px;
     }
 
     .final h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 18px;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 20px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 36px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
       opacity: 0;
-    }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     @media (max-width: 640px) {
-      .hero {
-        padding-top: 80px;
-      }
-      .approach-card {
-        padding: 28px 22px;
-      }
-      .price {
-        font-size: 2.4rem;
-      }
+      .hero { padding-top: 90px; }
+      .strategy-card { padding: 32px 24px; }
+      .price { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body>
+  <div class="film-grain"></div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="hero-label">Campaign Proposal for Masithokoze Moyo</div>
+      <div class="hero-label">Campaign Proposal · Masithokoze Moyo</div>
       <h1 class="serif">
         A clear plan for<br>
         <span>Rising from The Ashes</span>
       </h1>
       <p class="hero-sub">
-        Built around what you already have — your story, your audience, your November launch — and designed to grow carefully from there.
+        Built around what you already have — your story, your audience, and your November launch — and designed to grow carefully from there.
       </p>
       <div class="hero-cta">
-        <a href="#packages" class="btn btn-primary">See the packages</a>
+        <a href="#packages" class="btn btn-primary">View packages</a>
         <a href="#approach" class="btn btn-ghost">How I would work</a>
       </div>
     </div>
@@ -445,29 +398,25 @@
   <!-- COUNTRIES -->
   <section>
     <div class="container">
-      <div class="section-label reveal">Priority Markets</div>
-      <h2 class="section-title reveal">Where we begin</h2>
-      <p class="section-text reveal">
-        We start with the places that already carry weight for this story, then expand carefully.
-      </p>
-
+      <div class="section-label">Priority Markets</div>
+      <h2 class="section-title serif">Where we begin</h2>
       <div class="countries">
-        <div class="country-card primary reveal">
+        <div class="country-card primary">
           <div class="country-flag">🇿🇼</div>
           <div class="country-name">Zimbabwe</div>
           <div class="country-tag">Home & primary focus</div>
         </div>
-        <div class="country-card reveal">
+        <div class="country-card">
           <div class="country-flag">🇬🇧</div>
           <div class="country-name">United Kingdom</div>
           <div class="country-tag">Launch market</div>
         </div>
-        <div class="country-card reveal">
+        <div class="country-card">
           <div class="country-flag">🇳🇬</div>
           <div class="country-name">Nigeria</div>
           <div class="country-tag">Early growth market</div>
         </div>
-        <div class="country-card reveal">
+        <div class="country-card">
           <div class="country-flag">🇺🇸</div>
           <div class="country-name">United States</div>
           <div class="country-tag">Diaspora & media</div>
@@ -479,21 +428,13 @@
   <!-- APPROACH -->
   <section id="approach">
     <div class="container">
-      <div class="section-label reveal">The Approach</div>
-      <h2 class="section-title reveal">How I would actually work with you</h2>
+      <div class="section-label">The Approach</div>
+      <h2 class="section-title serif">How I would actually work with you</h2>
 
-      <div class="approach-card reveal">
-        <p>I wouldn’t start by spending heavily on ads and hoping the book reaches people globally. I’d start with what you already have: your audience of around 60,000 followers, your strong LinkedIn presence, the Cameroon radio interview, the Zimbabwean press coverage, and your November 14 launch in Kidderminster.</p>
+      <div class="strategy-card">
+        <p>For *Rising from The Ashes*, I wouldn’t start by spending money at ads and hoping the book reaches people globally. I’d start with what you already have: your audience of around 60,000 followers, your strong LinkedIn presence, the Cameroon radio interview, the Zimbabwean press coverage, and your November 14 launch in Kidderminster. My first step would be to build a dedicated landing page for your book, with your story, purchase links, the charity commitment, and an email sign up. I’d install the Meta Pixel and, where practical, the Conversions API, alongside Google Analytics, so I can track where visitors come from, what content attracts them, and which campaigns generate sales or enquiries. I’d then test small, focused Facebook and Instagram ads targeting readers in the UK and Nigeria before expanding towards Zimbabwean and African diaspora communities, personal development readers, churches, schools and universities. Rather than spending heavily on strangers, I’d retarget people who have visited your page, watched your trailer or engaged with your content. Since you earn around £2 to £3 per book, I’d be careful with the budget and make sure we are not spending more to acquire a buyer than the sale can reasonably support. The goal is to combine book sales with opportunities for interviews, speaking engagements, educational partnerships and wider recognition.</p>
 
-        <p>My first step would be to build a dedicated landing page for the book — with your story, purchase links, the charity commitment, and an email sign-up. I’d install the Meta Pixel and, where practical, the Conversions API, alongside Google Analytics, so we can track where visitors come from, what content attracts them, and which efforts lead to sales or enquiries.</p>
-
-        <p>I’d then test small, focused Facebook and Instagram ads targeting readers in the UK and Nigeria before expanding towards Zimbabwean and African diaspora communities, personal development readers, churches, schools and universities. Rather than spending heavily on strangers, I’d retarget people who have visited your page, watched the trailer, or engaged with your content.</p>
-
-        <p>Since you earn around £2 to £3 per book, I’d be careful with the budget and make sure we are not spending more to acquire a reader than the sale can reasonably support. The goal is to combine book sales with opportunities for interviews, speaking engagements, educational partnerships and wider recognition.</p>
-
-        <p>Over three months, I’d use the first phase to build the landing page, produce a compelling book trailer, set up tracking and start collecting email subscribers. Around your November 14 launch, I’d amplify your strongest stories, media mentions and reader reactions, then use the results to refine the campaigns. I’d also build your email list with permission and use it to share reader stories, interviews and updates — rather than simply asking people to buy repeatedly.</p>
-
-        <p>Alongside this, I’d actively pitch podcasts, radio stations, online publications, libraries, universities, churches and leadership programmes, keeping track of every pitch, response and feature. Through my work with Michael Vecchione on <em>Hard Guys Cry</em>, Teresa Michael and B.G. Howard, I’ve come to see book promotion as more than posting content. I want to build a system that keeps putting the book in front of the right people and gives us clear numbers to work with.</p>
+        <p>Over the three months, I’d use the first phase to build the landing page, produce a compelling book trailer, set up tracking and start collecting email subscribers. Around your November 14 launch, I’d amplify your strongest stories, media mentions and reader reactions, then use the results to refine the campaigns and reach more of the right people. I’d also build your email list with permission and use it to share reader stories, interviews, book updates and opportunities to engage with your message, rather than simply asking people to buy repeatedly. Alongside this, I’d actively pitch podcasts, radio stations, online publications, libraries, universities, churches and leadership programmes, keeping track of every pitch, response and feature. Through my work with **Michael Vecchione on *Hard Guys Cry*, Teresa Michael and B.G. Howard**, which you can explore through my portfolio at [philipoladele.com](https://philipoladele.com/), I’ve come to see book promotion as more than posting content. I want to build a system that keeps putting the book in front of the right people and gives us clear numbers to work with. I’d review performance weekly and report on reach, audience locations, email growth, media opportunities, reviews and sales wherever tracking allows. My aim is to help you build visibility that continues long after launch day, while making sure every pound we spend has a clear purpose.</p>
       </div>
     </div>
   </section>
@@ -501,15 +442,11 @@
   <!-- PACKAGES -->
   <section id="packages">
     <div class="container">
-      <div class="section-label reveal" style="text-align:center">Investment</div>
-      <h2 class="section-title reveal" style="text-align:center">Two clear options</h2>
-      <p class="section-text reveal" style="text-align:center; margin-left:auto; margin-right:auto">
-        Both plans include SEO and careful ad management. The longer plan adds email marketing and fully funded ads.
-      </p>
+      <div class="section-label" style="text-align:center">Investment</div>
+      <h2 class="section-title serif" style="text-align:center">Two clear options</h2>
 
       <div class="pricing-grid">
-        <!-- 2 MONTHS -->
-        <div class="price-card reveal">
+        <div class="price-card">
           <div class="plan-name">Two Months</div>
           <div class="plan-desc">Focused launch support through and beyond 14 November</div>
           <div class="price">£1,500</div>
@@ -527,8 +464,7 @@
           <a href="#contact" class="btn btn-ghost">Choose Two Months</a>
         </div>
 
-        <!-- 3 MONTHS -->
-        <div class="price-card featured reveal">
+        <div class="price-card featured">
           <div class="badge">RECOMMENDED</div>
           <div class="plan-name">Three Months</div>
           <div class="plan-desc">Full system with email and sustained growth</div>
@@ -548,10 +484,9 @@
         </div>
       </div>
 
-      <!-- TRAILER -->
-      <div class="trailer-box reveal">
+      <div class="trailer-box">
         <div>
-          <div style="font-weight:600; margin-bottom:4px">Book Trailer</div>
+          <div style="font-weight:600; margin-bottom:4px; font-size:17px">Book Trailer</div>
           <div style="font-size:14px; color:var(--muted)">A short, compelling video for Facebook, Instagram, LinkedIn and YouTube</div>
         </div>
         <div class="trailer-price">£50</div>
@@ -562,41 +497,85 @@
   <!-- FINAL -->
   <section class="final" id="contact">
     <div class="container">
-      <h2 class="reveal serif">I’m ready when you are</h2>
-      <p class="reveal">
+      <h2 class="serif">I’m ready when you are</h2>
+      <p>
         You already said you got a good energy from our conversation. I’d like to keep that going with clear work and careful spending. Let’s have that second conversation and decide the path that feels right.
       </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20–%20Campaign%20Proposal" class="btn btn-primary reveal" style="font-size:16px; padding:15px 36px">
+      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20–%20Campaign%20Proposal" class="btn btn-primary" style="font-size:16px; padding:16px 40px">
         Reply to this proposal
       </a>
     </div>
   </section>
 
   <script>
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance
+    gsap.timeline()
+      .to(".hero-label", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.2)
+      .to(".hero h1", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 0.35)
+      .to(".hero-sub", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.5)
+      .to(".hero-cta", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.65);
+
+    // Section labels & titles
+    gsap.utils.toArray(".section-label, .section-title").forEach(el => {
+      gsap.fromTo(el, 
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 85%" }
         }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -30px 0px'
+      );
     });
 
-    reveals.forEach(el => observer.observe(el));
-
-    // Stagger countries
-    document.querySelectorAll('.country-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 0.09}s`;
+    // Country cards
+    gsap.utils.toArray(".country-card").forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.8, delay: i * 0.1, ease: "power3.out",
+          scrollTrigger: { trigger: card, start: "top 88%" }
+        }
+      );
     });
 
-    // Stagger pricing cards
-    document.querySelectorAll('.price-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 0.12}s`;
+    // Strategy card
+    gsap.fromTo(".strategy-card",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
+        scrollTrigger: { trigger: ".strategy-card", start: "top 80%" }
+      }
+    );
+
+    // Pricing cards
+    gsap.utils.toArray(".price-card").forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0, duration: 0.9, delay: i * 0.15, ease: "power3.out",
+          scrollTrigger: { trigger: card, start: "top 85%" }
+        }
+      );
     });
+
+    // Trailer box
+    gsap.fromTo(".trailer-box",
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+        scrollTrigger: { trigger: ".trailer-box", start: "top 88%" }
+      }
+    );
+
+    // Final section
+    gsap.fromTo(".final h2, .final p, .final .btn",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: "power3.out",
+        scrollTrigger: { trigger: ".final", start: "top 80%" }
+      }
+    );
   </script>
 </body>
 </html>
