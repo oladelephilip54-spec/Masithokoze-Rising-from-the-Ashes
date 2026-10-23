@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rising from The Ashes – Campaign Proposal</title>
+  <title>Campaign Proposal for Masithokoze Moyo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     :root {
       --bg: #0c0a09;
       --card: #1c1917;
-      --border: rgba(251, 146, 60, 0.13);
+      --border: rgba(251, 146, 60, 0.14);
       --text: #fafaf9;
       --muted: #a8a29e;
       --ember: #f97316;
@@ -34,18 +34,18 @@
     body::before {
       content: '';
       position: fixed;
-      top: -15%;
+      top: -12%;
       left: 50%;
       transform: translateX(-50%);
-      width: 900px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(249,115,22,0.11) 0%, transparent 70%);
+      width: 880px;
+      height: 580px;
+      background: radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -54,7 +54,7 @@
 
     /* Hero */
     .hero {
-      padding: 100px 0 60px;
+      padding: 90px 0 50px;
       text-align: center;
     }
 
@@ -66,15 +66,15 @@
       border-radius: 100px;
       font-size: 13px;
       color: #fdba74;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       opacity: 0;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      font-size: clamp(2.4rem, 5.8vw, 3.6rem);
       line-height: 1.15;
       letter-spacing: -0.03em;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       opacity: 0;
     }
 
@@ -85,58 +85,23 @@
     }
 
     .hero .name {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: #fdba74;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       opacity: 0;
     }
 
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 36px;
+      max-width: 480px;
+      margin: 0 auto;
       opacity: 0;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 30px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: white;
-      box-shadow: 0 0 28px rgba(249,115,22,0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(249,115,22,0.55);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(251,146,60,0.25);
-    }
-
-    .btn-ghost:hover {
-      border-color: #f97316;
-      background: rgba(249,115,22,0.08);
-    }
-
+    /* Shared */
     section {
-      padding: 50px 0;
+      padding: 42px 0;
     }
 
     .section-label {
@@ -150,8 +115,8 @@
     }
 
     .section-title {
-      font-size: clamp(1.7rem, 3.8vw, 2.3rem);
-      margin-bottom: 28px;
+      font-size: clamp(1.6rem, 3.6vw, 2.15rem);
+      margin-bottom: 22px;
       opacity: 0;
     }
 
@@ -159,13 +124,13 @@
       background: linear-gradient(145deg, #1c1917, #151311);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 28px 30px;
-      margin-bottom: 18px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
       opacity: 0;
     }
 
     .card h3 {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 600;
       color: #fdba74;
       margin-bottom: 10px;
@@ -179,46 +144,46 @@
     /* Pricing */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
     }
 
     .price-card {
       background: linear-gradient(160deg, #1c1917, #151311);
       border: 1px solid rgba(251,146,60,0.18);
-      border-radius: 20px;
-      padding: 32px 26px;
+      border-radius: 18px;
+      padding: 28px 24px;
       position: relative;
       transition: all 0.35s ease;
       opacity: 0;
     }
 
     .price-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       border-color: rgba(249,115,22,0.4);
-      box-shadow: 0 0 40px rgba(249,115,22,0.15);
+      box-shadow: 0 0 36px rgba(249,115,22,0.15);
     }
 
     .price-card.featured {
       border-color: rgba(249,115,22,0.45);
-      box-shadow: 0 0 35px rgba(249,115,22,0.2);
+      box-shadow: 0 0 32px rgba(249,115,22,0.2);
     }
 
     .badge {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
       font-size: 11px;
       font-weight: 700;
-      padding: 4px 11px;
+      padding: 4px 10px;
       border-radius: 100px;
     }
 
     .plan-name {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -226,11 +191,11 @@
     .plan-desc {
       font-size: 13.5px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .price {
-      font-size: 2.5rem;
+      font-size: 2.35rem;
       font-weight: 700;
       background: linear-gradient(90deg, #fdba74, #f97316);
       -webkit-background-clip: text;
@@ -241,18 +206,18 @@
     .price-note {
       font-size: 13px;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .features {
       list-style: none;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .features li {
       display: flex;
-      gap: 10px;
-      padding: 5px 0;
+      gap: 9px;
+      padding: 4px 0;
       font-size: 14px;
       color: #d6d3d1;
     }
@@ -263,33 +228,67 @@
       font-weight: 700;
     }
 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: white;
+      box-shadow: 0 0 24px rgba(249,115,22,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(249,115,22,0.5);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(251,146,60,0.25);
+    }
+
+    .btn-ghost:hover {
+      border-color: #f97316;
+      background: rgba(249,115,22,0.08);
+    }
+
     .price-card .btn {
       width: 100%;
       border-radius: 12px;
-      padding: 12px;
-      font-size: 14px;
     }
 
     .final {
       text-align: center;
-      padding: 70px 0 90px;
+      padding: 60px 0 80px;
     }
 
     .final h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 16px;
+      font-size: clamp(1.7rem, 3.8vw, 2.3rem);
+      margin-bottom: 14px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 420px;
-      margin: 0 auto 32px;
+      max-width: 400px;
+      margin: 0 auto 28px;
       opacity: 0;
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 80px 0 50px; }
+      .hero { padding: 70px 0 40px; }
     }
   </style>
 </head>
@@ -304,8 +303,14 @@
       <p class="hero-sub">
         Scope and numbers together, as you asked.
       </p>
-      <div style="opacity:0" class="hero-cta">
-        <a href="#packages" class="btn btn-primary">View the options</a>
+    </div>
+  </section>
+
+  <!-- OPENING -->
+  <section>
+    <div class="container">
+      <div class="card">
+        <p>Thank you for the conversation, and for being so clear about what you want to see. Here's the scope and the numbers together, as you asked.</p>
       </div>
     </div>
   </section>
@@ -315,7 +320,17 @@
     <div class="container">
       <div class="section-label">The bet we're making</div>
       <div class="card">
-        <p>At £2 to £3 a copy, this can't be won by selling books one at a time through ads. It's won by putting the book in front of groups that buy in tens and hundreds — libraries, universities, schools, churches, leadership and mentoring programmes — and by getting you onto platforms where one interview reaches thousands of readers at once. Ads have a job here, but it's to point warm traffic at the page and the coverage, not to chase strangers.</p>
+        <p>At £2 to £3 a copy, this can't be won by selling books one at a time through ads. It's won by putting the book in front of groups that buy in tens and hundreds, libraries, universities, schools, churches, leadership and mentoring programmes, and by getting you onto platforms where one interview reaches thousands of readers at once. Ads have a job here, but it's to point warm traffic at the page and the coverage, not to chase strangers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY -->
+  <section>
+    <div class="container">
+      <div class="section-label">Who I've done this for</div>
+      <div class="card">
+        <p>I've run promotion for Michael Vecchione on Hard Guys Cry, the Fallen Angel series and The Sculptress, handling pre order announcements, signed copy messaging, bookstore callouts, reader focused copy and website traffic. I've also worked with Teresa Michael and B.G. Howard, and built trailers and social campaigns for authors, gaming and business clients. More of it is at philipoladele.com.</p>
       </div>
     </div>
   </section>
@@ -327,26 +342,26 @@
       <h2 class="section-title serif">Three clear phases</h2>
 
       <div class="card">
-        <h3>Phase one — before 14 November</h3>
-        <p>A landing page built for the Kidderminster launch, with your story, the charity pledge, buy links and an email signup. Meta Pixel and Google Analytics installed so we can see what's working from day one. A book trailer cut for Facebook, Instagram, LinkedIn and YouTube. Email capture set up, since there's no list today. A press pack ready for local, national and diaspora media, with the launch day assets done early.</p>
+        <h3>Phase one, before 14 November</h3>
+        <p>A landing page built for the Kidderminster launch, with your story, the charity pledge, buy links and an email signup. Meta Pixel and Google Analytics installed so we see what's working from day one. A book trailer cut for Facebook, Instagram, LinkedIn and YouTube. Email capture set up, since there's no list today. A press pack ready for local, national and diaspora media, with the launch day assets finished early.</p>
       </div>
 
       <div class="card">
-        <h3>Phase two — launch week</h3>
-        <p>Amplify the Kidderminster event before, during and after. Turn the Cameroon radio interview, the New York writer and The Herald coverage into a run of posts rather than one-off announcements. Retargeting live on Facebook and Instagram to anyone who has visited the page, watched the trailer or engaged.</p>
+        <h3>Phase two, launch week</h3>
+        <p>Amplify the Kidderminster event before, during and after. Turn the Cameroon radio interview, the New York writer and The Herald coverage into a run of posts rather than one off announcements. Retargeting live on Facebook and Instagram to anyone who has visited the page, watched the trailer or engaged.</p>
       </div>
 
       <div class="card">
-        <h3>Phase three — after launch</h3>
+        <h3>Phase three, after launch</h3>
         <p>Weekly pitching to podcasts, radio and publications, logged in one tracker so you see every pitch and response. Library, university and school submissions, with a pack prepared for each. A reader review push on Amazon and Goodreads. A monthly report on reach, where readers are, email growth, media features, submissions and sales wherever tracking allows.</p>
       </div>
     </div>
   </section>
 
-  <!-- PACKAGES -->
+  <!-- OPTIONS -->
   <section id="packages">
     <div class="container">
-      <div class="section-label">Two ways to work together</div>
+      <div class="section-label">Two ways in</div>
       <h2 class="section-title serif">Clear options</h2>
 
       <div class="pricing-grid">
@@ -360,47 +375,51 @@
             <li>Cut for Facebook, Instagram, LinkedIn and YouTube</li>
             <li>Ready to use across platforms</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost">Select Trailer</a>
         </div>
 
         <div class="price-card">
-          <div class="plan-name">Two Months</div>
-          <div class="plan-desc">Everything through launch + one month of momentum</div>
-          <div class="price">£1,500</div>
-          <div class="price-note">Ad budget funded by you, capped at £200/month</div>
+          <div class="plan-name">One Month</div>
+          <div class="plan-desc">The launch itself, done properly</div>
+          <div class="price">£950</div>
+          <div class="price-note">Landing page, trailer, tracking, press pack and launch week</div>
           <ul class="features">
-            <li>Landing page + tracking</li>
-            <li>Book trailer included</li>
-            <li>Press pack and launch assets</li>
+            <li>Landing page and tracking</li>
+            <li>Book trailer</li>
+            <li>Press pack</li>
             <li>Launch week amplification</li>
-            <li>Retargeting setup</li>
-            <li>One month of after-launch work</li>
-            <li>Friday written updates</li>
+            <li>A way to see how I work</li>
           </ul>
-          <a href="#contact" class="btn btn-ghost">Choose Two Months</a>
         </div>
 
         <div class="price-card featured">
           <div class="badge">SUGGESTED</div>
           <div class="plan-name">Three Months</div>
-          <div class="plan-desc">Full runway after launch</div>
-          <div class="price">£3,000</div>
-          <div class="price-note">Ad budget funded by you, capped at £200/month</div>
+          <div class="plan-desc">Through launch and two full months after</div>
+          <div class="price">£2,400</div>
+          <div class="price-note">Paid £800 a month</div>
           <ul class="features">
-            <li>Everything in Two Months</li>
-            <li>Extra month of pitching</li>
-            <li>Library, university and school submissions</li>
+            <li>Everything in the launch month</li>
+            <li>Library and university submissions</li>
             <li>Reader review push</li>
-            <div style="height:8px"></div>
-            <li>End of period review</li>
+            <li>Ongoing pitching and reporting</li>
+            <li>The coverage needs somewhere to go</li>
           </ul>
-          <a href="#contact" class="btn btn-primary">Choose Three Months</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ADS NOTE -->
+  <!-- WHY THIS PRICE -->
+  <section>
+    <div class="container">
+      <div class="card">
+        <h3>Why £2,400 and not more</h3>
+        <p>At your net per copy, £2,400 is roughly 800 books. I could ask for more, but then the book has to sell itself out of a hole it can't. What this fee actually buys is the institutional doors and the media features you listed as your measures, and those are worth far more to you than the copies are.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADS -->
   <section>
     <div class="container">
       <div class="card">
@@ -418,7 +437,7 @@
         <p>The landing page live within two weeks of starting, the trailer within three, at least 12 pitches to podcasts, radio and publications in the first month, and a written update every Friday, no exceptions.</p>
       </div>
 
-      <div class="section-label" style="margin-top:32px">How we measure it</div>
+      <div class="section-label" style="margin-top:28px">How we measure it</div>
       <div class="card">
         <p>Using your own list: Amazon and physical sales, reach and where it's coming from, library and university submissions, reader reviews, and the number and reach of media features across print, online, radio, TV and podcast.</p>
       </div>
@@ -426,13 +445,13 @@
   </section>
 
   <!-- FINAL -->
-  <section class="final" id="contact">
+  <section class="final">
     <div class="container">
       <h2 class="serif">Ready when you are</h2>
       <p>
         Reply with which option suits and I'll send the agreement over with a start date, so we're fully live before the 14th.
       </p>
-      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20–%20Let's%20proceed" class="btn btn-primary">
+      <a href="mailto:philip.oladele@philipoladele.com?subject=Rising%20from%20The%20Ashes%20Campaign%20Proposal" class="btn btn-primary">
         Reply to this proposal
       </a>
     </div>
@@ -442,22 +461,21 @@
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.timeline()
-      .to(".hero-label", { opacity: 1, duration: 0.7 }, 0.2)
-      .to(".hero h1", { opacity: 1, duration: 0.9 }, 0.35)
-      .to(".hero .name", { opacity: 1, duration: 0.8 }, 0.5)
-      .to(".hero-sub", { opacity: 1, duration: 0.7 }, 0.65)
-      .to(".hero-cta", { opacity: 1, duration: 0.7 }, 0.8);
+      .to(".hero-label", { opacity: 1, duration: 0.7 }, 0.15)
+      .to(".hero h1", { opacity: 1, duration: 0.85 }, 0.3)
+      .to(".hero .name", { opacity: 1, duration: 0.75 }, 0.45)
+      .to(".hero-sub", { opacity: 1, duration: 0.7 }, 0.6);
 
     gsap.utils.toArray(".section-label, .section-title, .card, .price-card").forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 25 }, {
-        opacity: 1, y: 0, duration: 0.85, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 91%" }
+      gsap.fromTo(el, { opacity: 0, y: 22 }, {
+        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 92%" }
       });
     });
 
-    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 20 }, {
-      opacity: 1, y: 0, duration: 0.85, stagger: 0.12, ease: "power3.out",
-      scrollTrigger: { trigger: ".final", start: "top 88%" }
+    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 18 }, {
+      opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out",
+      scrollTrigger: { trigger: ".final", start: "top 90%" }
     });
   </script>
 </body>
