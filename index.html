@@ -8,57 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #f8f6f2; --text: #1a1a1a; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
 
-    :root {
-      --bg: #f8f6f2;
-      --text: #1a1a1a;
-      --highlight: #1a1a1a;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* ========== PRELOADER ========== */
     #preloader {
-      position: fixed;
-      inset: 0;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      position: fixed; inset: 0; background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
       animation: preloaderOut 1.6s cubic-bezier(0.76, 0, 0.24, 1) 3.6s forwards;
     }
-
     .name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3.8rem, 14vw, 10rem);
-      font-weight: 500;
-      color: #f5f5f5;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
+      font-size: clamp(3.8rem, 14vw, 10rem); font-weight: 500; color: #f5f5f5;
+      letter-spacing: -0.04em; line-height: 0.9;
     }
-
     .name span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(130%) rotate(6deg);
+      display: inline-block; opacity: 0; transform: translateY(130%) rotate(6deg);
       animation: letterIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-
     .name span:nth-child(1)  { animation-delay: 0.08s; }
     .name span:nth-child(2)  { animation-delay: 0.16s; }
     .name span:nth-child(3)  { animation-delay: 0.24s; }
@@ -70,127 +37,58 @@
     .name span:nth-child(9)  { animation-delay: 0.72s; }
     .name span:nth-child(10) { animation-delay: 0.80s; }
     .name span:nth-child(11) { animation-delay: 0.88s; }
+    @keyframes letterIn { to { opacity: 1; transform: translateY(0) rotate(0deg); } }
+    @keyframes preloaderOut { to { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
 
-    @keyframes letterIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg);
-      }
-    }
-
-    @keyframes preloaderOut {
-      to {
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    /* ========== PROPOSAL ========== */
     .proposal {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 160px 40px 200px;
-      opacity: 0;
-      animation: contentReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) 4.8s forwards;
+      max-width: 760px; margin: 0 auto; padding: 160px 40px 200px;
+      opacity: 0; animation: contentReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) 4.8s forwards;
     }
+    @keyframes contentReveal { to { opacity: 1; } }
+    .proposal p { font-size: 1.125rem; line-height: 1.95; margin-bottom: 2.2rem; font-weight: 300; }
+    .proposal p.signature { margin-top: 3.2rem; font-weight: 400; }
 
-    @keyframes contentReveal {
-      to { opacity: 1; }
-    }
-
-    .proposal p {
-      font-size: 1.125rem;
-      line-height: 1.95;
-      margin-bottom: 2.2rem;
-      font-weight: 300;
-      color: var(--text);
-    }
-
-    .proposal p.signature {
-      margin-top: 3.2rem;
-      font-weight: 400;
-    }
-
-    /* Word animation */
-    .word {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: bottom;
-      margin-right: 0.22em;
-    }
-
-    .word span {
-      display: inline-block;
-      transform: translateY(120%);
+    .word { display: inline-block; overflow: hidden; vertical-align: bottom; margin-right: 0.22em; }
+    .word > span {
+      display: inline-block; transform: translateY(120%);
       animation: wordUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       animation-play-state: paused;
     }
+    .proposal.revealed .word > span { animation-play-state: running; }
 
-    .proposal.revealed .word span {
-      animation-play-state: running;
-    }
+    .proposal p:nth-of-type(1) .word > span  { animation-delay: calc(0.03s * var(--i)); }
+    .proposal p:nth-of-type(2) .word > span  { animation-delay: calc(0.6s + 0.02s * var(--i)); }
+    .proposal p:nth-of-type(3) .word > span  { animation-delay: calc(1.3s + 0.018s * var(--i)); }
+    .proposal p:nth-of-type(4) .word > span  { animation-delay: calc(2.0s + 0.016s * var(--i)); }
+    .proposal p:nth-of-type(5) .word > span  { animation-delay: calc(2.8s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(6) .word > span  { animation-delay: calc(3.6s + 0.014s * var(--i)); }
+    .proposal p:nth-of-type(7) .word > span  { animation-delay: calc(4.4s + 0.013s * var(--i)); }
+    .proposal p:nth-of-type(8) .word > span  { animation-delay: calc(5.2s + 0.013s * var(--i)); }
+    .proposal p:nth-of-type(9) .word > span  { animation-delay: calc(6.0s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(10) .word > span { animation-delay: calc(6.8s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(11) .word > span { animation-delay: calc(7.6s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(12) .word > span { animation-delay: calc(8.4s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(13) .word > span { animation-delay: calc(9.2s + 0.012s * var(--i)); }
+    .proposal p:nth-of-type(14) .word > span { animation-delay: calc(10s + 0.012s * var(--i)); }
+    @keyframes wordUp { to { transform: translateY(0); } }
 
-    .proposal p:nth-of-type(1) .word span  { animation-delay: calc(0.03s * var(--i)); }
-    .proposal p:nth-of-type(2) .word span  { animation-delay: calc(0.6s + 0.02s * var(--i)); }
-    .proposal p:nth-of-type(3) .word span  { animation-delay: calc(1.3s + 0.018s * var(--i)); }
-    .proposal p:nth-of-type(4) .word span  { animation-delay: calc(2.0s + 0.016s * var(--i)); }
-    .proposal p:nth-of-type(5) .word span  { animation-delay: calc(2.8s + 0.014s * var(--i)); }
-    .proposal p:nth-of-type(6) .word span  { animation-delay: calc(3.6s + 0.014s * var(--i)); }
-    .proposal p:nth-of-type(7) .word span  { animation-delay: calc(4.4s + 0.013s * var(--i)); }
-    .proposal p:nth-of-type(8) .word span  { animation-delay: calc(5.2s + 0.013s * var(--i)); }
-    .proposal p:nth-of-type(9) .word span  { animation-delay: calc(6.0s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(10) .word span { animation-delay: calc(6.8s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(11) .word span { animation-delay: calc(7.6s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(12) .word span { animation-delay: calc(8.4s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(13) .word span { animation-delay: calc(9.2s + 0.012s * var(--i)); }
-    .proposal p:nth-of-type(14) .word span { animation-delay: calc(10s + 0.012s * var(--i)); }
-
-    @keyframes wordUp {
-      to { transform: translateY(0); }
-    }
-
-    /* Animated highlights */
-    .hl {
-      position: relative;
-      display: inline;
-      font-weight: 500;
-    }
-
+    .hl { position: relative; display: inline; font-weight: 500; }
     .hl::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0.05em;
-      width: 0;
-      height: 0.35em;
-      background: rgba(0, 0, 0, 0.12);
-      z-index: -1;
+      content: ''; position: absolute; left: 0; bottom: 0.05em; width: 0; height: 0.35em;
+      background: rgba(0, 0, 0, 0.12); z-index: -1;
       animation: highlightDraw 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       animation-play-state: paused;
     }
-
-    .proposal.revealed .hl::after {
-      animation-play-state: running;
-    }
-
-    @keyframes highlightDraw {
-      to { width: 100%; }
-    }
+    .proposal.revealed .hl::after { animation-play-state: running; }
+    @keyframes highlightDraw { to { width: 100%; } }
 
     @media (max-width: 640px) {
-      .proposal {
-        padding: 120px 24px 140px;
-      }
-      .proposal p {
-        font-size: 1.05rem;
-        line-height: 1.85;
-      }
+      .proposal { padding: 120px 24px 140px; }
+      .proposal p { font-size: 1.05rem; line-height: 1.85; }
     }
   </style>
 </head>
 <body>
-
   <div id="preloader">
     <div class="name">
       <span>M</span><span>a</span><span>s</span><span>i</span><span>t</span><span>h</span><span>o</span><span>k</span><span>o</span><span>z</span><span>e</span>
@@ -216,50 +114,48 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const paragraphs = document.querySelectorAll('.proposal p');
-      paragraphs.forEach(p => {
-        const html = p.innerHTML;
-        const parts = html.split(/(\s+|<br\s*\/?>)/g);
-        p.innerHTML = '';
+      document.querySelectorAll('.proposal p').forEach(p => {
+        const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null);
+        const nodes = [];
+        let node;
+        while (node = walker.nextNode()) nodes.push(node);
+
+        // Rebuild with word wrapping while preserving highlights
+        const fragment = document.createDocumentFragment();
         let wordIndex = 0;
-        parts.forEach(part => {
-          if (/^\s*$/.test(part) || /<br/.test(part)) {
-            if (/<br/.test(part)) p.appendChild(document.createElement('br'));
-            else p.appendChild(document.createTextNode(part));
-          } else {
-            // Preserve highlight spans
-            if (part.includes('class="hl"')) {
-              const temp = document.createElement('div');
-              temp.innerHTML = part;
-              const hl = temp.querySelector('.hl');
-              if (hl) {
+
+        nodes.forEach(n => {
+          if (n.nodeType === Node.TEXT_NODE && n.textContent.trim()) {
+            n.textContent.split(/(\s+)/).forEach(part => {
+              if (part.trim()) {
                 const wrap = document.createElement('span');
                 wrap.className = 'word';
                 const inner = document.createElement('span');
-                inner.innerHTML = hl.innerHTML;
-                inner.className = 'hl';
-                inner.style.setProperty('--i', wordIndex);
+                inner.textContent = part;
+                inner.style.setProperty('--i', wordIndex++);
                 wrap.appendChild(inner);
-                p.appendChild(wrap);
-                wordIndex++;
-                return;
+                fragment.appendChild(wrap);
+              } else {
+                fragment.appendChild(document.createTextNode(part));
               }
-            }
+            });
+          } else if (n.nodeType === Node.ELEMENT_NODE && n.classList.contains('hl')) {
             const wrap = document.createElement('span');
             wrap.className = 'word';
-            const inner = document.createElement('span');
-            inner.textContent = part;
-            inner.style.setProperty('--i', wordIndex);
+            const inner = n.cloneNode(true);
+            inner.style.setProperty('--i', wordIndex++);
             wrap.appendChild(inner);
-            p.appendChild(wrap);
-            wordIndex++;
+            fragment.appendChild(wrap);
+          } else if (n.nodeName === 'BR') {
+            fragment.appendChild(document.createElement('br'));
           }
         });
+
+        p.innerHTML = '';
+        p.appendChild(fragment);
       });
 
-      setTimeout(() => {
-        document.getElementById('proposal').classList.add('revealed');
-      }, 4800);
+      setTimeout(() => document.getElementById('proposal').classList.add('revealed'), 4800);
     });
   </script>
 </body>
