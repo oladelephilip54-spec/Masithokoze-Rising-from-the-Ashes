@@ -17,7 +17,6 @@
       --text: #0F172A;
       --muted: #64748B;
       --accent: #2563EB;
-      --accent-hover: #1D4ED8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,7 +45,6 @@
       flex-direction: column;
       justify-content: center;
       padding: 140px 0 120px;
-      position: relative;
     }
 
     .hero-label {
@@ -68,7 +66,6 @@
       line-height: 1.08;
       letter-spacing: -0.035em;
       margin-bottom: 28px;
-      color: #0F172A;
       opacity: 0;
       transform: translateY(40px);
     }
@@ -152,54 +149,131 @@
       opacity: 0;
     }
 
-    /* Countries */
-    .countries {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
-      margin-top: 48px;
-    }
-
-    .country-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 20px;
+    /* ===== ORBIT / GLOBE SECTION ===== */
+    .orbit-section {
       text-align: center;
-      transition: all 0.4s ease;
-      opacity: 0;
-      transform: translateY(40px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      padding: 80px 0 60px;
     }
 
-    .country-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      border-color: rgba(37,99,235,0.25);
+    .globe-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 40px auto 50px;
+      perspective: 1000px;
     }
 
-    .country-card.primary {
-      border-color: rgba(37,99,235,0.3);
-      background: #EFF6FF;
+    .globe {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: 
+        radial-gradient(circle at 30% 30%, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 100%);
+      position: relative;
+      box-shadow: 
+        inset -20px -20px 40px rgba(0,0,0,0.08),
+        0 25px 50px rgba(0,0,0,0.1);
+      animation: rotateGlobe 40s linear infinite;
+      overflow: hidden;
     }
 
-    .country-flag {
-      font-size: 34px;
-      margin-bottom: 12px;
+    .globe::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background-image: radial-gradient(#94a3b8 1.2px, transparent 1.2px);
+      background-size: 12px 12px;
+      opacity: 0.45;
     }
 
-    .country-name {
+    .globe::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+      pointer-events: none;
+    }
+
+    @keyframes rotateGlobe {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotateX(70deg);
+    }
+
+    .orbit-ring:nth-child(1) { width: 360px; height: 360px; }
+    .orbit-ring:nth-child(2) { width: 420px; height: 420px; opacity: 0.6; }
+    .orbit-ring:nth-child(3) { width: 480px; height: 480px; opacity: 0.35; }
+
+    .country-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #2563EB;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.25);
+      animation: pulseDot 2.5s ease-in-out infinite;
+    }
+
+    .country-dot::after {
+      content: attr(data-label);
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
       font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 4px;
+      color: #0F172A;
+      white-space: nowrap;
+      background: white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .country-tag {
-      font-size: 13px;
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+
+    /* Position the four countries roughly on the globe */
+    .dot-zimbabwe { top: 58%; left: 52%; }
+    .dot-uk { top: 28%; left: 46%; }
+    .dot-nigeria { top: 52%; left: 48%; }
+    .dot-usa { top: 35%; left: 22%; }
+
+    .countries-list {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      opacity: 0;
+    }
+
+    .country-item {
+      text-align: center;
+      font-size: 14px;
       color: var(--muted);
     }
 
-    /* Strategy blocks */
+    .country-item strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* Strategy */
     .strategy-blocks {
       margin-top: 48px;
       display: flex;
@@ -345,9 +419,10 @@
     }
 
     @media (max-width: 640px) {
-      .hero { padding-top: 100px; }
-      .strategy-block { padding: 28px 24px; }
-      .price { font-size: 2.6rem; }
+      .globe-wrapper { width: 260px; height: 260px; }
+      .orbit-ring:nth-child(1) { width: 300px; height: 300px; }
+      .orbit-ring:nth-child(2) { width: 350px; height: 350px; }
+      .orbit-ring:nth-child(3) { width: 400px; height: 400px; }
     }
   </style>
 </head>
@@ -371,31 +446,41 @@
     </div>
   </section>
 
-  <!-- COUNTRIES -->
-  <section>
+  <!-- ORBIT / COUNTRIES -->
+  <section class="orbit-section">
     <div class="container">
       <div class="section-label">Priority Markets</div>
       <h2 class="section-title serif">Where we begin</h2>
-      <div class="countries">
-        <div class="country-card primary">
-          <div class="country-flag">🇿🇼</div>
-          <div class="country-name">Zimbabwe</div>
-          <div class="country-tag">Home and primary focus</div>
+
+      <div class="globe-wrapper">
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring"></div>
+
+        <div class="globe">
+          <div class="country-dot dot-zimbabwe" data-label="Zimbabwe"></div>
+          <div class="country-dot dot-uk" data-label="United Kingdom"></div>
+          <div class="country-dot dot-nigeria" data-label="Nigeria"></div>
+          <div class="country-dot dot-usa" data-label="United States"></div>
         </div>
-        <div class="country-card">
-          <div class="country-flag">🇬🇧</div>
-          <div class="country-name">United Kingdom</div>
-          <div class="country-tag">Launch market</div>
+      </div>
+
+      <div class="countries-list">
+        <div class="country-item">
+          <strong>Zimbabwe</strong>
+          Home and primary focus
         </div>
-        <div class="country-card">
-          <div class="country-flag">🇳🇬</div>
-          <div class="country-name">Nigeria</div>
-          <div class="country-tag">Early growth market</div>
+        <div class="country-item">
+          <strong>United Kingdom</strong>
+          Launch market
         </div>
-        <div class="country-card">
-          <div class="country-flag">🇺🇸</div>
-          <div class="country-name">United States</div>
-          <div class="country-tag">Diaspora and media</div>
+        <div class="country-item">
+          <strong>Nigeria</strong>
+          Early growth market
+        </div>
+        <div class="country-item">
+          <strong>United States</strong>
+          Diaspora and media
         </div>
       </div>
     </div>
@@ -438,8 +523,7 @@
       <h2 class="section-title serif" style="text-align:center">Clear packages</h2>
 
       <div class="pricing-grid">
-
-        <!-- Book Trailer first -->
+        <!-- Trailer first -->
         <div class="price-card">
           <div class="plan-name">Book Trailer</div>
           <div class="plan-desc">Standalone short video for promotion</div>
@@ -454,7 +538,6 @@
           <a href="#contact" class="btn btn-ghost">Select Trailer</a>
         </div>
 
-        <!-- Two Months -->
         <div class="price-card">
           <div class="plan-name">Two Months</div>
           <div class="plan-desc">Focused launch support through and beyond 14 November</div>
@@ -473,7 +556,6 @@
           <a href="#contact" class="btn btn-ghost">Choose Two Months</a>
         </div>
 
-        <!-- Three Months -->
         <div class="price-card featured">
           <div class="badge">RECOMMENDED</div>
           <div class="plan-name">Three Months</div>
@@ -491,7 +573,6 @@
           </ul>
           <a href="#contact" class="btn btn-primary">Choose Three Months</a>
         </div>
-
       </div>
     </div>
   </section>
@@ -527,15 +608,23 @@
       });
     });
 
-    // Countries
-    gsap.utils.toArray(".country-card").forEach((card, i) => {
-      gsap.fromTo(card, { opacity: 0, y: 50 }, {
-        opacity: 1, y: 0, duration: 0.9, delay: i * 0.1, ease: "power3.out",
-        scrollTrigger: { trigger: card, start: "top 90%" }
-      });
+    // Globe entrance
+    gsap.from(".globe-wrapper", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1.4,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".globe-wrapper", start: "top 85%" }
     });
 
-    // Strategy blocks
+    gsap.to(".countries-list", {
+      opacity: 1,
+      duration: 1,
+      delay: 0.4,
+      scrollTrigger: { trigger: ".countries-list", start: "top 90%" }
+    });
+
+    // Strategy
     gsap.utils.toArray(".strategy-block").forEach((block, i) => {
       gsap.fromTo(block, { opacity: 0, y: 40 }, {
         opacity: 1, y: 0, duration: 0.95, delay: i * 0.1, ease: "power3.out",
