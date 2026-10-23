@@ -11,13 +11,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root {
-      --bg: #F9F6F1;
-      --card: #FFFFFF;
-      --border: rgba(0,0,0,0.07);
-      --text: #1C1917;
-      --muted: #78716C;
-      --accent: #B45309;
-      --accent-soft: #D97706;
+      --bg: #0c0a09;
+      --card: #1c1917;
+      --border: rgba(251, 146, 60, 0.12);
+      --text: #fafaf9;
+      --muted: #a8a29e;
+      --ember: #f97316;
+      --gold: #fbbf24;
+      --glow: rgba(249, 115, 22, 0.35);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,58 +29,82 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
     .serif { font-family: 'Instrument Serif', Georgia, serif; }
+
+    /* Soft ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
     .container {
       max-width: 880px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
     /* Hero */
     .hero {
-      padding: 100px 0 70px;
+      padding: 110px 0 80px;
       text-align: center;
     }
 
     .hero-label {
       display: inline-block;
       padding: 6px 16px;
-      background: rgba(180,83,9,0.08);
-      border: 1px solid rgba(180,83,9,0.18);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.25);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
-      color: #B45309;
+      color: #fdba74;
       margin-bottom: 28px;
       opacity: 0;
     }
 
     .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-size: clamp(2.7rem, 6.5vw, 4.4rem);
       line-height: 1.1;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       opacity: 0;
+    }
+
+    .hero h1 .title-glow {
+      background: linear-gradient(90deg, #fdba74, #f97316, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero h1 .name {
       display: block;
-      font-size: 0.55em;
+      font-size: 0.52em;
       font-weight: 500;
-      color: #B45309;
-      margin-top: 10px;
-      letter-spacing: 0.02em;
+      color: #fdba74;
+      margin-top: 12px;
+      letter-spacing: 0.03em;
       opacity: 0;
     }
 
     .hero-sub {
       font-size: 1.15rem;
       color: var(--muted);
-      max-width: 520px;
-      margin: 20px auto 36px;
+      max-width: 500px;
+      margin: 22px auto 40px;
       opacity: 0;
     }
 
@@ -95,36 +120,36 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 30px;
+      padding: 14px 32px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 15px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.35s ease;
       border: none;
       cursor: pointer;
     }
 
     .btn-primary {
-      background: #B45309;
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
-      box-shadow: 0 8px 24px rgba(180,83,9,0.25);
+      box-shadow: 0 0 30px rgba(249,115,22,0.4);
     }
 
     .btn-primary:hover {
-      background: #92400E;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 0 45px rgba(249,115,22,0.55);
     }
 
     .btn-ghost {
       background: transparent;
       color: var(--text);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(251,146,60,0.25);
     }
 
     .btn-ghost:hover {
-      border-color: #B45309;
-      background: rgba(180,83,9,0.05);
+      border-color: #f97316;
+      background: rgba(249,115,22,0.08);
     }
 
     section {
@@ -134,9 +159,9 @@
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #B45309;
+      color: #fdba74;
       margin-bottom: 12px;
       text-align: center;
       opacity: 0;
@@ -154,8 +179,8 @@
     .markets-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px 40px;
-      max-width: 560px;
+      gap: 32px 50px;
+      max-width: 520px;
       margin: 0 auto;
     }
 
@@ -165,22 +190,22 @@
     }
 
     .market-dot {
-      width: 12px;
-      height: 12px;
-      background: #B45309;
+      width: 11px;
+      height: 11px;
+      background: #f97316;
       border-radius: 50%;
       margin: 0 auto 14px;
-      box-shadow: 0 0 0 5px rgba(180,83,9,0.15);
+      box-shadow: 0 0 0 5px rgba(249,115,22,0.2), 0 0 18px rgba(249,115,22,0.4);
     }
 
     .market-item strong {
       display: block;
-      font-size: 17px;
-      margin-bottom: 4px;
+      font-size: 16px;
+      margin-bottom: 3px;
     }
 
     .market-item span {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--muted);
     }
 
@@ -188,32 +213,32 @@
     .strategy-blocks {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .strategy-block {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #1c1917, #151311);
+      border: 1px solid rgba(251,146,60,0.12);
       border-radius: 20px;
       padding: 28px 30px;
       opacity: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
     }
 
     .strategy-block h3 {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #92400E;
+      color: #fdba74;
     }
 
     .strategy-block p {
-      color: #44403C;
+      color: #d6d3d1;
       font-size: 1.02rem;
       line-height: 1.75;
     }
 
-    /* Pricing */
+    /* Pricing - glowing */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -221,35 +246,42 @@
     }
 
     .price-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(160deg, #1c1917, #151311);
+      border: 1px solid rgba(251,146,60,0.15);
       border-radius: 24px;
       padding: 36px 28px;
       position: relative;
-      transition: all 0.35s ease;
+      transition: all 0.4s ease;
       opacity: 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
     }
 
     .price-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.07);
+      transform: translateY(-8px);
+      border-color: rgba(249,115,22,0.35);
+      box-shadow: 0 20px 50px rgba(249,115,22,0.15);
     }
 
     .price-card.featured {
-      border-color: #B45309;
+      border-color: rgba(249,115,22,0.4);
+      box-shadow: 0 0 40px rgba(249,115,22,0.18), 0 15px 50px rgba(0,0,0,0.4);
+    }
+
+    .price-card.featured:hover {
+      box-shadow: 0 0 60px rgba(249,115,22,0.28), 0 25px 60px rgba(0,0,0,0.45);
     }
 
     .badge {
       position: absolute;
       top: 18px;
       right: 18px;
-      background: #B45309;
+      background: linear-gradient(135deg, #f97316, #ea580c);
       color: white;
       font-size: 11px;
       font-weight: 700;
       padding: 5px 12px;
       border-radius: 100px;
+      box-shadow: 0 0 20px rgba(249,115,22,0.4);
     }
 
     .plan-name {
@@ -265,10 +297,13 @@
     }
 
     .price {
-      font-size: 2.7rem;
+      font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 4px;
+      background: linear-gradient(90deg, #fdba74, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .price-note {
@@ -287,12 +322,12 @@
       gap: 10px;
       padding: 7px 0;
       font-size: 14.5px;
-      color: #44403C;
+      color: #d6d3d1;
     }
 
     .features li::before {
       content: "✓";
-      color: #B45309;
+      color: #f97316;
       font-weight: 700;
     }
 
@@ -309,13 +344,13 @@
 
     .final h2 {
       font-size: clamp(2rem, 4vw, 2.8rem);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       opacity: 0;
     }
 
     .final p {
       color: var(--muted);
-      max-width: 460px;
+      max-width: 440px;
       margin: 0 auto 36px;
       opacity: 0;
     }
@@ -326,7 +361,7 @@
         gap: 28px;
       }
       .hero {
-        padding: 80px 0 50px;
+        padding: 90px 0 60px;
       }
     }
   </style>
@@ -338,7 +373,7 @@
     <div class="container">
       <div class="hero-label">Campaign Proposal</div>
       <h1 class="serif">
-        Rising from The Ashes
+        <span class="title-glow">Rising from The Ashes</span>
         <span class="name">for Masithokoze Moyo</span>
       </h1>
       <p class="hero-sub">
@@ -488,44 +523,44 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero animation
+    // Hero
     gsap.timeline()
-      .to(".hero-label", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.2)
-      .to(".hero h1", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 0.35)
-      .to(".hero h1 .name", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.55)
-      .to(".hero-sub", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.7)
-      .to(".hero-cta", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 0.85);
+      .to(".hero-label", { opacity: 1, duration: 0.8, ease: "power3.out" }, 0.2)
+      .to(".hero h1", { opacity: 1, duration: 1, ease: "power3.out" }, 0.35)
+      .to(".hero h1 .name", { opacity: 1, duration: 0.9, ease: "power3.out" }, 0.55)
+      .to(".hero-sub", { opacity: 1, duration: 0.8, ease: "power3.out" }, 0.7)
+      .to(".hero-cta", { opacity: 1, duration: 0.8, ease: "power3.out" }, 0.85);
 
-    // Rest of animations
+    // Sections
     gsap.utils.toArray(".section-label, .section-title").forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 30 }, {
+      gsap.fromTo(el, { opacity: 0, y: 25 }, {
         opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
         scrollTrigger: { trigger: el, start: "top 90%" }
       });
     });
 
     gsap.utils.toArray(".market-item").forEach((item, i) => {
-      gsap.fromTo(item, { opacity: 0, y: 25 }, {
+      gsap.fromTo(item, { opacity: 0, y: 20 }, {
         opacity: 1, y: 0, duration: 0.8, delay: i * 0.1, ease: "power3.out",
         scrollTrigger: { trigger: item, start: "top 92%" }
       });
     });
 
     gsap.utils.toArray(".strategy-block").forEach((block, i) => {
-      gsap.fromTo(block, { opacity: 0, y: 30 }, {
+      gsap.fromTo(block, { opacity: 0, y: 25 }, {
         opacity: 1, y: 0, duration: 0.85, delay: i * 0.08, ease: "power3.out",
         scrollTrigger: { trigger: block, start: "top 92%" }
       });
     });
 
     gsap.utils.toArray(".price-card").forEach((card, i) => {
-      gsap.fromTo(card, { opacity: 0, y: 40 }, {
+      gsap.fromTo(card, { opacity: 0, y: 35 }, {
         opacity: 1, y: 0, duration: 0.9, delay: i * 0.1, ease: "power3.out",
         scrollTrigger: { trigger: card, start: "top 90%" }
       });
     });
 
-    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 30 }, {
+    gsap.fromTo(".final h2, .final p, .final .btn", { opacity: 0, y: 25 }, {
       opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: "power3.out",
       scrollTrigger: { trigger: ".final", start: "top 88%" }
     });
